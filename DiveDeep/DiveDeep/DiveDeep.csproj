@@ -7,11 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\divedeeplogoPNG.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\divedeeplogoPNG.png" />
+    <None Include="wwwroot\Images\divedeeplogoPNG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

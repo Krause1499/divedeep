@@ -6,7 +6,8 @@ namespace DiveDeep.Controllers
     {
         public IActionResult BCD()
         {
-            return View();
+            var categories = Persistence.CategoryRepository.GetAllProducts();
+            return View(categories);
         }
         public IActionResult Dykkerdragter()
         {

@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "_Layout";
+
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DiveDeep</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DiveDeep.styles.css" asp-append-version="true" />
+</head>
+  <body>
+      <header>
+        @RenderBody()
+      </header>
+    <main>
+        <div class="card" style="width: 18rem;">
+            <img src="/Images/divedeeplogoPNG.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">@RenderSection("brand", required: true)</p>
+            </div>
+        </div>
+        <div class="container">
+            <h1>@RenderSection("title", required: true)</h1>
+            @RenderBody()
+        </div>
+    </main>
+    <footer>
+        @RenderBody()
+    </footer>
+  </body>
+</html>

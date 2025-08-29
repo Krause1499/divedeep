@@ -6,4 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\divedeeplogoPNG.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\divedeeplogoPNG.png" />
+  </ItemGroup>
+
 </Project>

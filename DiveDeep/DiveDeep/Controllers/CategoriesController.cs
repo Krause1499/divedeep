@@ -6,28 +6,33 @@ namespace DiveDeep.Controllers
     {
         public IActionResult BCD()
         {
-            var categories = Persistence.CategoryRepository.GetAllProducts();
+            var categories = Persistence.BCDRepository.GetAllBCDs();
             return View(categories);
         }
         public IActionResult Dykkerdragter()
         {
-            return View();
+            var categories = Persistence.DivingSuitRepository.GetAllDivingSuits();
+            return View(categories);
         }
         public IActionResult Tanke()
         {
-            return View();
+            var categories = Persistence.OxygenTankRepository.GetAllOxygenTanks();
+            return View(categories);
         }
         public IActionResult Regulatorsæt()
         {
-            return View();
+            var categories = Persistence.RegulatorRepository.GetAllRegulators();
+            return View(categories);
         }
         public IActionResult MaskerSnorkler()
         {
-            return View();
+            var categories = Persistence.SnorkelRepository.GetAllSnorkels();
+            return View(categories);
         }
         public IActionResult Finner()
         {
-            return View();
+            var categories = Persistence.FinRepository.GetAllFins();
+            return View(categories);
         }
     }
 }

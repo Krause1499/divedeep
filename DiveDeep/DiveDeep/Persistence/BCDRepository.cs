@@ -2,7 +2,7 @@
 
 namespace DiveDeep.Persistence
 {
-    public class BCDRepository
+    public static class BCDRepository
     {
         private static List<BCD> BCDs = new List<BCD>
         {

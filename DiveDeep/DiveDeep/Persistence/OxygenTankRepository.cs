@@ -2,7 +2,7 @@
 
 namespace DiveDeep.Persistence
 {
-    public class OxygenTankRepository
+    public static class OxygenTankRepository
     {
 
         private static List<OxygenTank> OxygenTanks = new List<OxygenTank>

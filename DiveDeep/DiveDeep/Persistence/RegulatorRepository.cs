@@ -2,7 +2,7 @@
 
 namespace DiveDeep.Persistence
 {
-    public class RegulatorRepository
+    public static class RegulatorRepository
     {
 
         private static List<Regulator> Regulators = new List<Regulator>

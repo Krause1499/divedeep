@@ -2,7 +2,7 @@
 
 namespace DiveDeep.Persistence
 {
-    public class SnorkelRepository
+    public static class SnorkelRepository
     {
 
         private static List<Snorkel> Snorkels = new List<Snorkel>

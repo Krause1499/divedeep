@@ -2,7 +2,7 @@
 
 namespace DiveDeep.Persistence
 {
-    public class FinRepository
+    public static class FinRepository
     {
         private static List<Fin> Fins = new List<Fin>
         {

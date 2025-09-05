@@ -2,7 +2,7 @@
 
 namespace DiveDeep.Persistence
 {
-    public class DivingSuitRepository
+    public static class DivingSuitRepository
     {
         private static List<DivingSuit> DivingSuits = new List<DivingSuit>
         {

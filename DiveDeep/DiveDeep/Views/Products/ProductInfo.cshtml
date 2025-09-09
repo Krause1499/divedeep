@@ -94,13 +94,40 @@
                 </div>
             }
             <div class="mb-4">
-                <label for="quantity" class="form-label">Quantity:</label>
+                <label for="quantity" class="form-label">Antal:</label>
                 <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
             </div>
+
             <label for="startDate">Startdato:</label>
-            <input id="startDate" class="form-control" type="date" />
+            <input id="startDate" name="StartDate" class="form-control" type="date" />
             <label for="endDate">Slutdato:</label>
-            <input id="startDate" class="form-control" type="date" />
+            <input id="endDate" name="EndDate" class="form-control" type="date" />
+
+            <script>
+                const startInput = document.getElementById('startDate');
+                const endInput = document.getElementById('endDate');
+
+                startInput.addEventListener('change', function () {
+                    if (!this.value) return;
+
+                    // Lav en ny dato ud fra startdatoen
+                    const startDate = new Date(this.value);
+                    // Læg 1 dag til
+                    startDate.setDate(startDate.getDate() + 1);
+
+                    // Konverter til YYYY-MM-DD format (krævet af <input type="date">)
+                    const minEndDate = startDate.toISOString().split('T')[0];
+
+                    // Sæt min-værdien på slutdato
+                    endInput.min = minEndDate;
+
+                    // Hvis der allerede er valgt en ugyldig slutdato, nulstil den
+                    if (endInput.value && endInput.value < minEndDate) {
+                        endInput.value = "";
+                    }
+                });
+            </script>
+
             <button class="datepicker btn btn-primary btn-lg mb-3 me-2">
                 <i class="bi bi-cart-plus"></i> Tilføj til kurv
             </button>

@@ -4,9 +4,9 @@ namespace DiveDeep.Controllers
 {
     public class ProductsController : Controller
     {
-        public IActionResult ProductInfoBCD(int id)
+        public IActionResult Products(int id)
         {
-            var product = Persistence.BCDRepository.GetByID(id);
+            var product = Persistence.ProductRepository.GetByID(id);
             return View(product);
         }
 
@@ -16,27 +16,27 @@ namespace DiveDeep.Controllers
             return View(product);
         }
 
-        public IActionResult ProductInfoFinner(int id)
+        public IActionResult ProductInfoFin(int id)
         {
-            var product = Persistence.BCDRepository.GetByID(id);
+            var product = Persistence.FinRepository.GetByID(id);
             return View(product);
         }
 
-        public IActionResult ProductInfoTanke(int id)
+        public IActionResult ProductInfoOxygenTank(int id)
         {
-            var product = Persistence.BCDRepository.GetByID(id);
+            var product = Persistence.OxygenTankRepository.GetByID(id);
             return View(product);
         }
 
-        public IActionResult ProductInfoRegulatorsæt(int id)
+        public IActionResult ProductInfoRegulator(int id)
         {
-            var product = Persistence.BCDRepository.GetByID(id);
+            var product = Persistence.RegulatorRepository.GetByID(id);
             return View(product);
         }
 
-        public IActionResult ProductInfoMaskerSnorkler(int id)
+        public IActionResult ProductInfoSnorkel(int id)
         {
-            var product = Persistence.BCDRepository.GetByID(id);
+            var product = Persistence.SnorkelRepository.GetByID(id);
             return View(product);
         }
     }

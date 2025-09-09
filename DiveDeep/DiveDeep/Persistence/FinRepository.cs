@@ -20,6 +20,9 @@ namespace DiveDeep.Persistence
         {
             return Fins;
         }
-
+        public static Fin? GetByID(int id)
+        {
+            return Fins.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace DiveDeep.Persistence
             return BCDs;
         }
 
-        public static BCD? GetByID(int id)
+        public static object GetByID(int id)
         {
             return BCDs.FirstOrDefault(x => x.Id == id);
         }

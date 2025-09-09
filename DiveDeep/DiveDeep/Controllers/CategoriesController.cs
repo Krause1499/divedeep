@@ -6,32 +6,32 @@ namespace DiveDeep.Controllers
     {
         public IActionResult BCD()
         {
-            var categories = Persistence.BCDRepository.GetAllBCDs();
+            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.BCD);
             return View(categories);
         }
         public IActionResult Dykkerdragter()
         {
-            var categories = Persistence.DivingSuitRepository.GetAllDivingSuits();
+            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.DivingSuit);
             return View(categories);
         }
         public IActionResult Tanke()
         {
-            var categories = Persistence.OxygenTankRepository.GetAllOxygenTanks();
+            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.OxygenTank);
             return View(categories);
         }
         public IActionResult Regulatorsæt()
         {
-            var categories = Persistence.RegulatorRepository.GetAllRegulators();
+            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.Regulator);
             return View(categories);
         }
         public IActionResult MaskerSnorkler()
         {
-            var categories = Persistence.SnorkelRepository.GetAllSnorkels();
+            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.Snorkel);
             return View(categories);
         }
         public IActionResult Finner()
         {
-            var categories = Persistence.FinRepository.GetAllFins();
+            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.Fin);
             return View(categories);
         }
     }

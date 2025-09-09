@@ -3,14 +3,14 @@
 *@
 
 @{
-    ViewData["Title"] = Model.Brand + Model.Model;
+    ViewData["Title"] = Model.Brand;
 }
 
 <div class="container mt-4">
     <div class="card">
-        <img src="/Images/divedeeplogoPNG.png" class="card-img-top" alt="@Model.Model">
+        <img src="/Images/divedeeplogoPNG.png" class="card-img-top" alt="@Model.Brand">
         <div class="card-body">
-            <h3 class="card-title">@Model.Model</h3>
+            <h3 class="card-title">@Model.Brand</h3>
             <h5 class="card-subtitle mb-2 text-muted">@Model.Price kr. pr. dag</h5>
             <p class="card-text">
                 Mærke: @Model.Brand

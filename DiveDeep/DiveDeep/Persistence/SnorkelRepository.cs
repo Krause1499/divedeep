@@ -20,6 +20,9 @@ namespace DiveDeep.Persistence
         {
             return Snorkels;
         }
-
+        public static Snorkel? GetByID(int id)
+        {
+            return Snorkels.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

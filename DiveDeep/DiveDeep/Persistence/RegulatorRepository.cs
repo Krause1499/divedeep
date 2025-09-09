@@ -16,6 +16,9 @@ namespace DiveDeep.Persistence
         {
             return Regulators;
         }
-
+        public static Regulator? GetByID(int id)
+        {
+            return Regulators.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

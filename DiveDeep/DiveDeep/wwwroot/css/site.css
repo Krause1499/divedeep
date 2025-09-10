@@ -52,3 +52,53 @@ body {
     font-weight: 600;
     color: #6c757d;
 }
+
+/* En rolig, hav-blå nuance */
+.navbar.bg-primary {
+    background: linear-gradient(to bottom right, #23aed9, #2a5298);
+}
+
+/* Links får en let hover-effekt */
+.navbar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    height: 100%; /* strækker sig til hele navbarens højde */
+    transition: color .2s ease, transform .2s ease;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #ffeb3b !important; /* gul kontrast på hover */
+        transform: translateY(-2px);
+    }
+
+/* Badgen rundt om logoet */
+.logo-badge {
+    height: 120px; /* badge størrelse */
+    width: 120px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    border: 2px solid rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* sikrer at billedet ikke går udenfor cirklen */
+}
+
+    /* Selve logo-billedet */
+    .logo-badge img {
+        max-width: 80%; /* skaler billedet inde i cirklen */
+        max-height: 80%;
+        height: auto;
+        width: auto;
+    }
+
+
+/* Juster på små skærme så logoet ikke bliver for dominerende */
+@media (max-width: 576px) {
+    .navbar-nav .nav-logo img {
+        height: 50px;
+        transform: none;
+    }
+}
+

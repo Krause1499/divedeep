@@ -34,7 +34,10 @@ namespace DiveDeep.Persistence
             new Snorkel {Id = 26, ProductType = ProductType.Snorkel, Brand = "Scubapro", Model = "Crystal VU", Price = 75},
             new Snorkel {Id = 27, ProductType = ProductType.Snorkel, Brand = "Scubapro", Model = "Scout Kontrast", Price = 75},
             new Snorkel {Id = 28, ProductType = ProductType.Snorkel, Brand = "Scubapro", Model = "Scout Enhance", Price = 75},
-            new Snorkel {Id = 29, ProductType = ProductType.Snorkel, Brand = "Scubapro", Model = "Element", Price = 75}
+            new Snorkel {Id = 29, ProductType = ProductType.Snorkel, Brand = "Scubapro", Model = "Element", Price = 75},
+            new DivingSet {Id = 30, ProductType = ProductType.DivingSet, Brand = "Scubapro", Model = "something", Price = 100 },
+            new DivingSet {Id = 31, ProductType = ProductType.SnorkelSet, Brand = "Scubapro", Model = "something", Price = 100 }
+
         };
 
         public static List<object> GetAllProductsByType(ProductType product)

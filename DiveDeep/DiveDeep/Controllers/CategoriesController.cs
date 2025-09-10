@@ -34,5 +34,15 @@ namespace DiveDeep.Controllers
             var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.Fin);
             return View(categories);
         }
+        public IActionResult DykkerSæt()
+        {
+            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.DivingSet);
+            return View(categories);
+        }
+
+        public IActionResult Kurv()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,99 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<Category> categories = new List<Category>
+    {
+		new BCD { Id = 1, Model = "BCD Model A", Brand = "Brand A", Price = 10, FilePath = "/images/bcd1.jpg" },
+		new Fin { Id = 2, Model = "Fin Model B", Brand = "Brand B", Price = 8, FilePath = "/images/fin1.jpg" },
+    };
+}
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container py-5">
+    <h1 class="mb-5">Din kurv</h1>
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Cart Items -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    @foreach (Category item in categories)
+                    {
+                        <div class="row align-items-center gy-2 py-2">
+                            <!-- no inline width -->
+                            <div class="col-auto">
+                                <img src="https://via.placeholder.com/100"
+                                     alt="Product 1"
+                                     class="img-fluid rounded" style="width:72px;height:72px;object-fit:cover;">
+                            </div>
+
+                            <div class="col-7 col-md-6">
+                                <h6 class="mb-1">@item.Brand</h6>
+                                <small class="text-muted">Category: Electronics</small>
+                            </div>
+
+                            <div class="col-5 col-md-3">
+                                <div class="input-group input-group-sm">
+                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                    <input type="text" class="form-control text-center" value="1" style="max-width:60px;">
+                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-1 text-md-end mt-2 mt-md-0 d-flex align-items-center justify-content-between justify-content-md-end gap-2">
+                                <strong class="mb-0">@item.Price DKK</strong>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- Continue Shopping Button -->
+            <div class="text-start mb-4">
+                <a href="#" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left me-2"></i>Udforsk videre
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <!-- Cart Summary -->
+            <div class="card" style="background-color: #f8f9fa;border-radius: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Odre Oversigt</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Subtotal</span>
+                        <span>$199.97</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Shipping</span>
+                        <span>$10.00</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Tax</span>
+                        <span>$20.00</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <strong>Total</strong>
+                        <strong>$229.97</strong>
+                    </div>
+                    <button class="btn btn-primary w-100">Betal nu</button>
+                </div>
+            </div>
+            <!-- Promo Code -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Apply Promo Code</h5>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter promo code">
+                        <button class="btn btn-outline-secondary" type="button">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

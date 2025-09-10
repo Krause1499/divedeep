@@ -69,28 +69,30 @@
             @if (Model is Fin || Model is DivingSuit)
             {
                 <div class="mb-4">
-                    <h5>Color:</h5>
-                    <div class="btn-group" role="group" aria-label="Color selection">
-                        <input type="radio" class="btn-check" name="color" id="black" autocomplete="off" checked>
-                        <label class="btn btn-outline-dark" for="black">Black</label>
-                        <input type="radio" class="btn-check" name="color" id="silver" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="silver">Silver</label>
-                        <input type="radio" class="btn-check" name="color" id="blue" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="blue">Blue</label>
+                    <h5>Vælg størrelse:</h5>
+                    <div class="btn-group" role="group" aria-label="Valg af størrelse">
+                        <input type="radio" class="btn-check" name="størrelse" id="XS" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="XS">XS</label>
+                        <input type="radio" class="btn-check" name="størrelse" id="S" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="S">S</label>
+                        <input type="radio" class="btn-check" name="størrelse" id="M" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="M">M</label>
+                        <input type="radio" class="btn-check" name="størrelse" id="L" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="L">L</label>
+                        <input type="radio" class="btn-check" name="størrelse" id="XL" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="XL">XL</label>
                     </div>
                 </div>
             }
             @if (Model is DivingSuit)
             {
                 <div class="mb-4">
-                    <h5>Color:</h5>
-                    <div class="btn-group" role="group" aria-label="Color selection">
-                        <input type="radio" class="btn-check" name="color" id="black" autocomplete="off" checked>
-                        <label class="btn btn-outline-dark" for="black">Black</label>
-                        <input type="radio" class="btn-check" name="color" id="silver" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="silver">Silver</label>
-                        <input type="radio" class="btn-check" name="color" id="blue" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="blue">Blue</label>
+                    <h5>Vælg køn:</h5>
+                    <div class="btn-group" role="group" aria-label="Valg af køn">
+                        <input type="radio" class="btn-check" name="mand" id="Mand" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="Mand">Mand</label>
+                        <input type="radio" class="btn-check" name="køn" id="Kvinde" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="Kvinde">Kvinde</label>
                     </div>
                 </div>
             }

@@ -47,10 +47,10 @@
 
         <!-- Product Details -->
         <div class="col-md-6">
-            <h2 class="mb-3">@test</h2>
-            <p class="text-muted mb-4">@Model.Brand</p>
+            <h2 class="mb-1">@test</h2>
+            <p class="text-muted mb-3">@Model.Brand</p>
             <div class="mb-3">
-                <span class="h4 me-2">@Model.Price kr. pr. dag</span>
+                <span class="h4 mb-3">@Model.Price kr. pr. dag</span>
                 @*<span class="text-muted"><s>$399.99</s></span> *@
             </div>
             @*<div class="mb-3">
@@ -61,9 +61,10 @@
                 <i class="bi bi-star-half text-warning"></i>
                 <span class="ms-2">4.5 (120 reviews)</span>
             </div> *@
-            <p class="mb-4">
-                Experience premium sound quality and industry-leading noise cancellation with these wireless
-                headphones. Perfect for music lovers and frequent travelers.
+            <p class="mb-3">
+                Ghost af Scubapro er designet til at give dig en optimal snorkeloplevelse.
+                Med sin ergonomiske form og højkvalitetsmaterialer sikrer den komfort og holdbarhed under dine dyk.
+                Perfekt til både begyndere og erfarne snorklere.
             </p>
             @if (Model is Fin || Model is DivingSuit)
             {
@@ -93,48 +94,57 @@
                     </div>
                 </div>
             }
-            <div class="mb-4">
+            <div class="mb-3">
                 <label for="quantity" class="form-label">Antal:</label>
                 <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
             </div>
 
-            <label for="startDate">Startdato:</label>
-            <input id="startDate" name="StartDate" class="form-control" type="date" />
-            <label for="endDate">Slutdato:</label>
-            <input id="endDate" name="EndDate" class="form-control" type="date" />
+            <div class="mb-3">
+                <label for="startDate">Startdato:</label>
+                <input id="startDate" name="StartDate" class="form-control mb-1" type="date" />
+                <label for="endDate">Slutdato:</label>
+                <input id="endDate" name="EndDate" class="form-control" type="date" disabled="disabled" />
 
-            <script>
-                const startInput = document.getElementById('startDate');
-                const endInput = document.getElementById('endDate');
+                <script>
+                    const startInput = document.getElementById('startDate');
+                    const endInput = document.getElementById('endDate');
 
-                startInput.addEventListener('change', function () {
-                    if (!this.value) return;
+                    const today = new Date();
+                    const yyyy = today.getFullYear();
+                    const mm = String(today.getMonth() + 1).padStart(2, '0');
+                    const dd = String(today.getDate()).padStart(2, '0');
+                    startInput.min = `${yyyy}-${mm}-${dd}`;
 
-                    // Lav en ny dato ud fra startdatoen
-                    const startDate = new Date(this.value);
-                    // Læg 1 dag til
-                    startDate.setDate(startDate.getDate() + 1);
+                    startInput.addEventListener('change', function () {
+                        if (!this.value) return;
 
-                    // Konverter til YYYY-MM-DD format (krævet af <input type="date">)
-                    const minEndDate = startDate.toISOString().split('T')[0];
+                        // Lav en ny dato ud fra startdatoen
+                        const startDate = new Date(this.value);
+                        // Læg 1 dag til
+                        startDate.setDate(startDate.getDate() + 1);
 
-                    // Sæt min-værdien på slutdato
-                    endInput.min = minEndDate;
+                        // Konverter til YYYY-MM-DD format (krævet af <input type="date">)
+                        const minEndDate = startDate.toISOString().split('T')[0];
 
-                    // Hvis der allerede er valgt en ugyldig slutdato, nulstil den
-                    if (endInput.value && endInput.value < minEndDate) {
-                        endInput.value = "";
-                    }
-                });
-            </script>
+                        // Sæt min-værdien på slutdato
+                        endInput.min = minEndDate;
+
+                        // Hvis der allerede er valgt en ugyldig slutdato, nulstil den
+                        if (endInput.value && endInput.value < minEndDate) {
+                            endInput.value = "";
+                        }
+                        endInput.disabled = false;
+                    });
+                </script>
+            </div>
 
             <button class="datepicker btn btn-primary btn-lg mb-3 me-2">
                 <i class="bi bi-cart-plus"></i> Tilføj til kurv
             </button>
             <button class="btn btn-outline-secondary btn-lg mb-3">
-                <i class="bi bi-heart"></i> Add to Wishlist
+                <i class="bi bi-heart"></i> Tilføj til ønskeliste
             </button>
-            <div class="mt-4">
+            @*<div class="mt-4">
                 <h5>Key Features:</h5>
                 <ul>
                     <li>Industry-leading noise cancellation</li>
@@ -142,7 +152,7 @@
                     <li>Touch sensor controls</li>
                     <li>Speak-to-chat technology</li>
                 </ul>
-            </div>
+            </div>*@
         </div>
     </div>
 </div>

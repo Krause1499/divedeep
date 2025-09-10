@@ -1,8 +1,87 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Forside";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Velkommen til DiveDeep</h1>
-    <h3 class="display-8">Bare spring i - vi sørger for resten!</h3>
-</div>
+@section Hero {
+    <!-- Full-width hero karrusel -->
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="hero-slide d-flex align-items-end" style="background-image:url('/Images/CoralBackground.jfif');">
+                    <div class="container text-white pb-5">
+                        <h1 class="display-5 fw-bold">Lej dykkerudstyr i topkvalitet</h1>
+                        <p class="lead mb-4">Alt fra masker til komplette sæt – klar til næste eventyr.</p>
+                        <a class="btn btn-primary btn-lg" asp-controller="Categories" asp-action="Dykkerdragter">Book nu</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="hero-slide d-flex align-items-end" style="background-image:url('/Images/CoralBackground.jfif');">
+                    <div class="container text-white pb-5">
+                        <h2 class="fw-bold">Weekend under overfladen?</h2>
+                        <p class="mb-4">Fleksible lejeperioder og fair priser.</p>
+                        <a class="btn btn-outline-light" asp-controller="Categories" asp-action="Regulatorsæt">Se udvalg</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="hero-slide d-flex align-items-end" style="background-image:url('/Images/CoralBackground.jfif');">
+                    <div class="container text-white pb-5">
+                        <h2 class="fw-bold">Service & sikkerhed først</h2>
+                        <p class="mb-4">Alt udstyr serviceres og trykprøves løbende.</p>
+                        <a class="btn btn-primary" asp-controller="Home" asp-action="Om">Læs mere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Forrige">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Næste">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+}
+
+<!-- Mest populære produkter (placeholders) -->
+<section class="my-5">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="mb-0">Mest populære produkter</h2>
+        <a class="btn btn-sm btn-outline-secondary" asp-controller="Categories" asp-action="BCD">Se alle</a>
+    </div>
+
+    <div class="row g-4">
+        @for (var i = 1; i <= 6; i++)
+        {
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card h-100 shadow-sm product-card">
+                  <img src="~/Images/SnorkelPNG.webp" class="card-img-top" alt="test">
+                    <div class="card-body">
+                        <h5 class="card-title">Produktnavn @i</h5>
+                        <p class="card-text text-muted">Kort beskrivelse – størrelse, type, etc.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-semibold">Fra 199,-/dag</span>
+                            <a class="btn btn-primary btn-sm" asp-controller="Categories" asp-action="Tanke">Se produkt</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // Auto-slide (valgfrit). Sæt til false for manuel.
+        const el = document.getElementById('heroCarousel');
+        if (el) new bootstrap.Carousel(el, { interval: 5000, ride: 'carousel' });
+    </script>
+}
+

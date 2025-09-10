@@ -18,7 +18,27 @@ namespace DiveDeep.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Om()
+        {
+            return View();
+        }
+
+        public IActionResult FAQ()
+        {
+            return View();
+        }
+
+        public IActionResult ForsendelseOgRetur()
+        {
+            return View();
+        }
+
+        public IActionResult Job()
+        {
+            return View();
+        }
+
+        public IActionResult Anmeldelser()
         {
             return View();
         }

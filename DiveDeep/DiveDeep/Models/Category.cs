@@ -7,5 +7,7 @@
         public string Brand { get; set; }
         public int Price { get; set; }
         public ProductType ProductType { get; set; }
+        public DateOnly? StartDate { get; set; }
+        public DateOnly? EndDate { get; set; }
     }
 }

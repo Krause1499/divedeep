@@ -18,7 +18,6 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
 }
 
 /* Hero: høj, full-bleed baggrund */
@@ -99,6 +98,9 @@ body {
         width: auto;
     }
 
+.nav-cart{
+    font-size: 40px;
+}
 
 /* Juster på små skærme så logoet ikke bliver for dominerende */
 @media (max-width: 576px) {

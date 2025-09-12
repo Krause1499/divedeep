@@ -64,7 +64,7 @@
         </main>
     </div>
 
-        <footer class="bg-primary text-center text-lg-start text-white">
+    <footer class="bg-primary text-center text-lg-start text-white" style="background: linear-gradient(to top right, #23aed9, #2a5298);">
             <!-- Grid container -->
             <div class="container p-4">
                 <!--Grid row-->
@@ -72,8 +72,12 @@
                     <!--Grid column-->
                     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 
-                        <div class="rounded-circle bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-2 mx-auto" style="width: 150px; height: 150px;">
-                            <a asp-controller="Home" asp-action="Index"><img src="/Images/divedeeplogoPNG.png" height="90" alt="DiveDeep logo"/></a>
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                        <a asp-controller="Home" asp-action="Index">
+                            <div class="logo-badge">
+                                <img src="/Images/divedeeplogoPNG.png" alt="DiveDeep logo" />
+                            </div>
+                        </a>
                         </div>
                         <p class="text-center fw-bold">Udlejning af kvalitetsdykkerudstyr</p>
 

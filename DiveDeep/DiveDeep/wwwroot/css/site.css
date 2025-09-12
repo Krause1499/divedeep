@@ -53,6 +53,12 @@ body {
     color: #6c757d;
 }
 
+.card-img-top {
+    height: 300px;
+    object-fit: contain; /* hele billedet vises */
+    background-color: #f8f9fa; /* neutral baggrund bag billeder */
+}
+
 /* En rolig, hav-blå nuance */
 .navbar.bg-primary {
     background: linear-gradient(to bottom right, #23aed9, #2a5298);

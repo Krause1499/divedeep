@@ -28,7 +28,12 @@
                         <div class="card h-100">
                             <img src="@Url.Content(item.FilePath)" class="card-img-top" alt="test">
                             <div class="card-body">
-                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Model)</h5>
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Model) - 
+                                    @if (@item.Thickness.HasValue)
+                                    {
+                                        @($"{item.Thickness} mm");
+                                    }
+                                    @item.Type</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">
                                     @Html.DisplayFor(modelItem => item.Price) kr. pr. dag
                                 </h6>

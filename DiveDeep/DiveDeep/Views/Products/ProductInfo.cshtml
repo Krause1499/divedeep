@@ -2,18 +2,18 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    string test = "";
+    string title = "";
     if (Model is Regulator)
     {
-        test = "Regulator";
+        title = "Regulator";
     }
     else if (Model is OxygenTank)
     {
-        test = "Tank";
+        title = "Tank";
     }
     else
-        test = Model.Model;
-    ViewData["Title"] = Model.Brand + test;
+        title = Model.Model;
+    ViewData["Title"] = $"{Model.Brand} {title}";
 }
 
 <style>
@@ -47,7 +47,7 @@
 
         <!-- Product Details -->
         <div class="col-md-6">
-            <h2 class="mb-1">@test</h2>
+            <h2 class="mb-1">@title</h2>
             <p class="text-muted mb-3">@Model.Brand</p>
             <div class="mb-3">
                 <span class="h4 mb-3">@Model.Price kr. pr. dag</span>
@@ -81,6 +81,20 @@
                         <label class="btn btn-outline-primary" for="L">L</label>
                         <input type="radio" class="btn-check" name="størrelse" id="XL" autocomplete="off">
                         <label class="btn btn-outline-primary" for="XL">XL</label>
+                    </div>
+                </div>
+            }
+            @if (Model is BCD)
+            {
+                <div class="mb-4">
+                    <h5>Vælg størrelse:</h5>
+                    <div class="btn-group" role="group" aria-label="Valg af størrelse">
+                        <input type="radio" class="btn-check" name="størrelse" id="S" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="S">S</label>
+                        <input type="radio" class="btn-check" name="størrelse" id="M" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="M">M</label>
+                        <input type="radio" class="btn-check" name="størrelse" id="L" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="L">L</label>
                     </div>
                 </div>
             }

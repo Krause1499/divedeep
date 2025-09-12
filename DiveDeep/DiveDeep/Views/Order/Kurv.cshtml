@@ -1,0 +1,132 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Kurv";
+    List<Category> categories = new List<Category>
+    {
+        new BCD { Id = 1, Model = "BCD Model A", Brand = "Brand A", StartDate = new DateOnly(2025, 9, 12), EndDate = new DateOnly(2025, 9, 15), ProductType = ProductType.BCD, Price = 10, FilePath = "/Images/SnorkelPNG.webp" },
+        new Fin { Id = 2, Model = "Fin Model B", Brand = "Brand B", StartDate = new DateOnly(2025, 9, 12), EndDate = new DateOnly(2025, 9, 18), ProductType = ProductType.Fin, Price = 10, FilePath = "/Images/SnorkelPNG.webp" },
+    };
+    double totalPrice = 0;
+    double totalPriceFørMoms = 0;
+    int totalDays = 0;
+}
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container py-5">
+    <h1 class="mb-5">Din kurv</h1>
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Cart Items -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    @foreach (Category item in categories)
+                    {
+                        <div class="row align-items-center gy-2 py-2">
+                            <div class="col-auto">
+                                <img src="@item.FilePath"
+                                     alt="Product 1"
+                                     class="img-fluid rounded"
+                                     style="width:72px;height:72px;object-fit:cover;">
+                            </div>
+
+                            <div class="col d-flex align-items-center justify-content-between flex-wrap">
+                                <div class="me-3">
+                                    <h6 class="mb-1">@item.Brand</h6>
+                                    <small class="text-muted">@item.ProductType</small>
+                                </div>
+
+                                <div class="text-center">
+                                    <p class="mb-0">Startdato for leje: @item.StartDate</p>
+                                    <p class="mb-0">Slutdato for leje: @item.EndDate</p>
+                                    <p class="mb-0">
+                                        Samlet antal dage: @{
+                                        totalDays = @item.EndDate.Value.Day - item.StartDate.Value.Day;
+                                    }
+                                        @totalDays
+                                </p>
+                            </div>
+
+                            <div class="input-group input-group-sm" style="max-width:120px;">
+                                <button class="btn btn-outline-secondary" type="button">-</button>
+                                <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary" type="button">+</button>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <strong>
+                                    @{
+                                        double price = 0;
+                                        price = @item.Price * totalDays;
+                                    }
+                                        @price DKK
+                                </strong>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                                        }
+                </div>
+            </div>
+            <!-- Continue Shopping Button -->
+            <div class="text-start mb-4">
+                <a href="#" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left me-2"></i>Udforsk videre
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <!-- Cart Summary -->
+            <div class="card" style="background-color: #f8f9fa;border-radius: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Odre Oversigt</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Subtotal</span>
+                        <strong>
+                            @foreach (var item in categories)
+                            {
+                                totalDays = @item.EndDate.Value.Day - item.StartDate.Value.Day;
+                                totalPrice += item.Price * totalDays;
+                            }
+                            @($"{totalPrice} DKK")
+                        </strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Moms udgør:</span>
+                        <span>
+                            @{
+                                double moms;
+                                totalPriceFørMoms = totalPrice / 1.25;
+                                moms = totalPrice - totalPriceFørMoms;
+                            }
+                            @($"{moms} DKK")
+                        </span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <strong>Total</strong>
+                        <strong>
+                            @($"{totalPrice} DKK")
+                        </strong>
+                    </div>
+                    <button class="btn btn-primary w-100">Betal nu</button>
+                </div>
+            </div>
+            <!-- Promo Code -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Apply Promo Code</h5>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter promo code">
+                        <button class="btn btn-outline-secondary" type="button">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

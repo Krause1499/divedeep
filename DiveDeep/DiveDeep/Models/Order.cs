@@ -2,7 +2,7 @@
 {
     public class Order
     {
-        public List<OrderItem> Items { get; set; }
+        public static List<OrderItem> Items { get; set; } = new List<OrderItem>();
         public int TotalPrice { get; set; }
     }
 }

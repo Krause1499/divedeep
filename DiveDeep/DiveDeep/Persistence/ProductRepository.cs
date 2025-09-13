@@ -74,6 +74,11 @@ namespace DiveDeep.Persistence
                          FilePath = "https://scubaevolution.co.za/cdn/shop/files/SP_24108100_Steel_Comp_Mask_1.webp?v=1747029931"}
         };
 
+        public static List<Category> GetAll()
+        {
+            return Products;
+        }
+
         public static List<object> GetAllProductsByType(ProductType product)
         {
             List<object> products = Products

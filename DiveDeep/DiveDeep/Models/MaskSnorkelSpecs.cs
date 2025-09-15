@@ -1,8 +1,7 @@
 ﻿namespace DiveDeep.Models
 {
-    public class Fin : Category
+    public record MaskSnorkelSpecs
     {
         public string Model { get; set; }
-        public Size Size { get; set; }
     }
 }

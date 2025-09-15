@@ -4,7 +4,7 @@
     {
         BCD,
         DivingSuit,
-        Fin,
+        Fins,
         OxygenTank,
         Regulator,
         Snorkel,

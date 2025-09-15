@@ -1,7 +1,8 @@
 ﻿namespace DiveDeep.Models
 {
-    public class Snorkel : Category
+    public record BCDSpecs
     {
         public string Model { get; set; }
+        public Size Size { get; set; }
     }
 }

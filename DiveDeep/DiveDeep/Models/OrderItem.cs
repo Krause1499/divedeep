@@ -6,7 +6,7 @@
         public string FilePath { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
-        public string Size { get; set; }
+        public Size Size { get; set; }
         public SuitType Type { get; set; }
         public Gender Gender { get; set; }
         public int Volume { get; set; }

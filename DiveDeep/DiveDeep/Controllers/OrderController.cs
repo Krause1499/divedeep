@@ -6,7 +6,7 @@ namespace DiveDeep.Controllers
 {
     public class OrderController : Controller
     {
-        public IActionResult Add(int id, DateOnly? startDate, DateOnly? endDate)
+        public IActionResult Add(int id, DateOnly? startDate, DateOnly? endDate, Size size)
         {
             var product = ProductRepository.Products.FirstOrDefault(p => p.Id == id);
             if (product is null) return NotFound();
@@ -20,7 +20,8 @@ namespace DiveDeep.Controllers
                 Price = product.Price,
                 ProductType = product.ProductType,
                 StartDate = startDate,
-                EndDate = endDate
+                EndDate = endDate,
+                Size = size
             };
 
             // Hvis produktet faktisk er en BCD, kopier ekstra felter

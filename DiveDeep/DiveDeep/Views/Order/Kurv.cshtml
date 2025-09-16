@@ -48,8 +48,18 @@
                                     }
                                         @totalDays
                                 </p>
-                                <p>Volume: @item.Volume</p>
-                                <p>Størrelse: @item.Size</p>
+                                    @{
+                                        if (item.ProductType == ProductType.OxygenTank)
+                                        {
+                                            <p>Volume: @item.Volume</p>
+                                        }
+                                }
+                                @{
+                                    if (item.ProductType == ProductType.BCD || item.ProductType == ProductType.Fin || item.ProductType == ProductType.DivingSuit)
+                                    {
+                                        <p>Størrelse: @item.Size</p>
+                                    }
+                                }
                             </div>
 
                             <div class="input-group input-group-sm" style="max-width:120px;">

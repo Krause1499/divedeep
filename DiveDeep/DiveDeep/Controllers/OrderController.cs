@@ -6,7 +6,7 @@ namespace DiveDeep.Controllers
 {
     public class OrderController : Controller
     {
-        public IActionResult Add(int id, DateOnly? startDate, DateOnly? endDate, Size size)
+        public IActionResult Add(int id, DateOnly? startDate, DateOnly? endDate, Size size = Size.M, Gender gender = Gender.Herre)
         {
             var product = ProductRepository.Products.FirstOrDefault(p => p.Id == id);
             if (product is null) return NotFound();
@@ -21,7 +21,8 @@ namespace DiveDeep.Controllers
                 ProductType = product.ProductType,
                 StartDate = startDate,
                 EndDate = endDate,
-                Size = size
+                Size = size,
+                Gender = gender
             };
 
             // Hvis produktet faktisk er en BCD, kopier ekstra felter
@@ -29,7 +30,6 @@ namespace DiveDeep.Controllers
             {
                 item.Volume = ot.Volume;
             }
-
             Order.Items.Add(item);
 
             // Gå til oversigten

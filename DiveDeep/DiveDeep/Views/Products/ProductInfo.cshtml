@@ -48,59 +48,61 @@
                 Med sin ergonomiske form og højkvalitetsmaterialer sikrer den komfort og holdbarhed under dine dyk.
                 Perfekt til både begyndere og erfarne snorklere.
             </p>
-            @if (Model is Fin || Model is DivingSuit)
-            {
-                <div class="mb-4">
-                    <h5>Vælg størrelse:</h5>
-                    <div class="btn-group" role="group" aria-label="Valg af størrelse">
-                        <input type="radio" class="btn-check" name="størrelse" id="XS" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="XS">XS</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="S" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="S">S</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="M" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="M">M</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="L" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="L">L</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="XL" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="XL">XL</label>
-                    </div>
-                </div>
-            }
-            @if (Model is DivingSuit)
-            {
-                <div class="mb-4">
-                    <h5>Vælg køn:</h5>
-                    <div class="btn-group" role="group" aria-label="Valg af køn">
-                        <input type="radio" class="btn-check" name="mand" id="Mand" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="Mand">Mand</label>
-                        <input type="radio" class="btn-check" name="køn" id="Kvinde" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="Kvinde">Kvinde</label>
-                    </div>
-                </div>
-            }
-            <div class="mb-3">
+@*             <div class="mb-3">
                 <label for="quantity" class="form-label">Antal:</label>
                 <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
-            </div>
+            </div> *@
 
             <form asp-controller="Order" asp-action="Add" method="post" class="mt-3">
                 <input type="hidden" name="id" value="@Model.Id" />
 
-                @if (Model is BCD bcd)
+                @if (Model is Fin || Model is DivingSuit)
                 {
                     <div class="mb-4">
                         <h5>Vælg størrelse:</h5>
                         <div class="btn-group" role="group" aria-label="Valg af størrelse">
-                            <input asp-for="@bcd.Size" value="S" type="radio" class="btn-check" name="størrelse" id="S" autocomplete="off">
+                            <input type="radio" class="btn-check" name="size" id="XS" value="XS" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="XS">XS</label>
+                            <input type="radio" class="btn-check" name="size" id="S" value="S" autocomplete="off">
                             <label class="btn btn-outline-primary" for="S">S</label>
-                            <input asp-for="@bcd.Size" value="M" type="radio" class="btn-check" name="størrelse" id="M" autocomplete="off">
+                            <input type="radio" class="btn-check" name="size" id="M" value="M" autocomplete="off">
                             <label class="btn btn-outline-primary" for="M">M</label>
-                            <input asp-for="@bcd.Size" value="L" type="radio" class="btn-check" name="størrelse" id="L" autocomplete="off">
+                            <input type="radio" class="btn-check" name="size" id="L" value="L" autocomplete="off">
                             <label class="btn btn-outline-primary" for="L">L</label>
+                            <input type="radio" class="btn-check" name="size" id="XL" value="XL" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="XL">XL</label>
+                        </div>
+                    </div>
+                }
+                @if (Model is DivingSuit)
+                {
+                    <div class="mb-4">
+                        <h5>Vælg køn:</h5>
+                        <div class="btn-group" role="group" aria-label="Valg af køn">
+                            <input type="radio" class="btn-check" name="gender" id="Herre" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="Herre">Herre</label>
+                            <input type="radio" class="btn-check" name="gender" id="Dame" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="Dame">Dame</label>
                         </div>
                     </div>
                 }
 
+                @if (Model is BCD)
+                {
+                    <div class="mb-4">
+                        <h5>Vælg størrelse:</h5>
+                        <div class="btn-group" role="group" aria-label="Valg af størrelse">
+                            <input type="radio" class="btn-check" name="size" id="S" value="S" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="S">S</label>
+
+                            <input type="radio" class="btn-check" name="size" id="M" value="M" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="M">M</label>
+
+                            <input type="radio" class="btn-check" name="size" id="L" value="L" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="L">L</label>
+                        </div>
+                    </div>
+                }
                 <div class="mb-3">
                     <label for="startDate">Startdato:</label>
                     <input id="startDate" name="startDate" class="form-control mb-1" type="date"

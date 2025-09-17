@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using DiveDeep.ViewModels;
+using DiveDeep.Models;
 
 namespace DiveDeep.Controllers
 {
@@ -7,6 +9,18 @@ namespace DiveDeep.Controllers
         public IActionResult ProductInfo(int id)
         {
             var product = Persistence.ProductRepository.GetByID(id);
+
+            switch(product.ProductType)
+            {
+                case ProductType.BCD:
+                    break;
+            }
+
+            var pvm = new ProductViewModel
+            {
+                product.
+            };
+
             return View(product);
         }
     }

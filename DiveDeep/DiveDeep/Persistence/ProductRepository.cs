@@ -90,7 +90,7 @@ namespace DiveDeep.Persistence
             return products;
         }
 
-        public static object? GetByID(int id)
+        public static Category? GetByID(int id)
         {
             return Products.FirstOrDefault(x => x.Id == id);
         }

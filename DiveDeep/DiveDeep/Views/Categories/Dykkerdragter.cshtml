@@ -5,7 +5,7 @@
     ViewData["Title"] = "Dykkerdragter";
 }
 @using DiveDeep.Models
-@model List<object>
+@model List<Product>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,23 +22,24 @@
         @using (Html.BeginForm("Index", "DivingSuit", FormMethod.Get))
         {
             <div class="row">
-                @foreach (DivingSuit item in Model)
+                @foreach (Product item in Model)
                 {
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
                             <img src="@Url.Content(item.FilePath)" class="card-img-top" alt="test">
                             <div class="card-body">
-                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Model) - 
-                                    @if (@item.Thickness.HasValue)
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.DivingSuit.Model) - 
+                                    @if (@item.DivingSuit.ThicknessInMm.HasValue)
                                     {
-                                        @($"{item.Thickness} mm");
+                                        @($"{item.DivingSuit.ThicknessInMm} mm")
+                                        ;
                                     }
-                                    @item.Type</h5>
+                                    @item.DivingSuit.SuitType</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">
-                                    @Html.DisplayFor(modelItem => item.Price) kr. pr. dag
+                                    @Html.DisplayFor(modelItem => item.Brand)
                                 </h6>
                                 <p class="card-text">
-                                    @Html.DisplayFor(modelItem => item.Brand)
+                                    @Html.DisplayFor(modelItem => item.DailyPrice) kr. pr. dag
                                 </p>
                                 <a asp-area="" asp-controller="Products" asp-action="ProductInfo" asp-route-id="@item.Id" class="stretched-link"></a>
                             </div>

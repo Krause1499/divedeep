@@ -2,37 +2,40 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    string title = "";
-    if (Model is Regulator)
-    {
-        title = "Regulator";
-    }
-    else if (Model is OxygenTank)
-    {
-        title = "Tank";
-    }
-    // else
-    //     title = Model.Model;
-    ViewData["Title"] = $"{Model.Brand} {title}";
+    //  string title = "";
+    //  if (Model.ProductType is ProductType.Regulator)
+    //  {
+    //      title = "Regulator";
+    //  }
+    // else if (Model.ProductType is ProductType.OxygenTank)
+    //  {
+    //      title = "Tank";
+    //  }
+    //  else
+    //      title = Model.Model;
+    ViewData["Title"] = $"{Model.Product.Brand}";
 }
-@model Category
+@model ProductDetailsViewModel
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/da.js"></script>
 <div class="container mt-5">
     <div class="row">
         <!-- Product Images -->
         <div class="col-md-6 mb-4">
-            <img src="@Url.Content(Model.FilePath)" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage">
+            <img src="@Url.Content(Model.Product.FilePath)" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage">
             <div class="d-flex justify-content-between">
             </div>
         </div>
 
         <!-- Product Details -->
         <div class="col-md-6">
-            <h2 class="mb-1">@title</h2>
-            <p class="text-muted mb-3">@Model.Brand</p>
+            <h2 class="mb-1">@Model.Product.Brand</h2>
+            <p class="text-muted mb-3">@Model.Product.Brand</p>
             <div class="mb-3">
-                <span class="h4 mb-3">@Model.Price kr. pr. dag</span>
+                <span class="h4 mb-3">@Model.Product.DailyPrice kr. pr. dag</span>
                 @*<span class="text-muted"><s>$399.99</s></span> *@
             </div>
             @*<div class="mb-3">
@@ -48,104 +51,156 @@
                 Med sin ergonomiske form og højkvalitetsmaterialer sikrer den komfort og holdbarhed under dine dyk.
                 Perfekt til både begyndere og erfarne snorklere.
             </p>
-            @if (Model is Fin || Model is DivingSuit)
-            {
-                <div class="mb-4">
-                    <h5>Vælg størrelse:</h5>
-                    <div class="btn-group" role="group" aria-label="Valg af størrelse">
-                        <input type="radio" class="btn-check" name="størrelse" id="XS" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="XS">XS</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="S" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="S">S</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="M" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="M">M</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="L" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="L">L</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="XL" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="XL">XL</label>
-                    </div>
-                </div>
-            }
-            @if (Model is BCD)
-            {
-                <div class="mb-4">
-                    <h5>Vælg størrelse:</h5>
-                    <div class="btn-group" role="group" aria-label="Valg af størrelse">
-                        <input type="radio" class="btn-check" name="størrelse" id="S" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="S">S</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="M" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="M">M</label>
-                        <input type="radio" class="btn-check" name="størrelse" id="L" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="L">L</label>
-                    </div>
-                </div>
-            }
-            @if (Model is DivingSuit)
-            {
-                <div class="mb-4">
-                    <h5>Vælg køn:</h5>
-                    <div class="btn-group" role="group" aria-label="Valg af køn">
-                        <input type="radio" class="btn-check" name="mand" id="Mand" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="Mand">Mand</label>
-                        <input type="radio" class="btn-check" name="køn" id="Kvinde" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="Kvinde">Kvinde</label>
-                    </div>
-                </div>
-            }
-            <div class="mb-3">
+@*             <div class="mb-3">
                 <label for="quantity" class="form-label">Antal:</label>
                 <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
-            </div>
+            </div> *@
 
             <form asp-controller="Order" asp-action="Add" method="post" class="mt-3">
-                <input type="hidden" name="id" value="@Model.Id" />
+                 <input type="hidden" asp-for="Product.Id" /> 
 
-                <div class="mb-3">
-                    <label for="startDate">Startdato:</label>
-                    <input id="startDate" name="startDate" class="form-control mb-1" type="date"
-                           value="@(Model.StartDate?.ToString("yyyy-MM-dd"))" />
+                <div class="text-danger" asp-validation-summary="All"></div>
+
+                @if (Model.Product.ProductType is ProductType.Fins)
+                {
+                    <div class="mb-4">
+                        <h5>Vælg størrelse:</h5>
+                        <div class="btn-group" role="group" aria-label="Valg af størrelse">
+
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.XS" id="size-XS" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-XS">XS</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.S" id="size-S" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-S">S</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.M" id="size-M" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-M">M</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.L" id="size-L" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-L">L</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.XL" id="size-XL" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-XL">XL</label>
+
+                        </div>
+                        <span class="text-danger ms-2" asp-validation-for="Product.Fins.Size"></span>
+                    </div>
+                }
+                @if (Model.Product.ProductType is ProductType.DivingSuit)
+                {
+                    <div class="mb-4">
+                        <h5>Vælg størrelse:</h5>
+                        <div class="btn-group" role="group" aria-label="Valg af størrelse">
+
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.XS" id="size-XS" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-XS">XS</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.S" id="size-S" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-S">S</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.M" id="size-M" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-M">M</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.L" id="size-L" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-L">L</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.XL" id="size-XL" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-XL">XL</label>
+
+                        </div>
+                        <span class="text-danger ms-2" asp-validation-for="Product.DivingSuit.Size"></span>
+                    </div>
+                }
+                 @if (Model.Product.ProductType is ProductType.DivingSuit)
+                {
+                    <div class="mb-4">
+                        <h5>Vælg køn:</h5>
+                        <div class="btn-group" role="group" aria-label="Valg af køn">
+
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Gender" value="@Gender.Herre" id="gender-Male" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="gender-Male">Mand</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Gender" value="@Gender.Dame" id="gender-Female" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="gender-Female">Kvinde</label>
+
+                            <span class="text-danger ms-2" asp-validation-for="Product.DivingSuit.Gender"></span>
+
+                        </div>
+                    </div>
+                }
+
+                 @if (Model.Product.ProductType is ProductType.BCD)
+                {
+                    <div class="mb-4">
+                        <h5>Vælg størrelse:</h5>
+                        <div class="btn-group" role="group" aria-label="Valg af størrelse">
+
+                            <input type="radio" class="btn-check" asp-for="Product.BCD.Size" value="@Size.S" id="size-S" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-S">S</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.BCD.Size" value="@Size.M" id="size-M" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-M">M</label>
+
+                            <input type="radio" class="btn-check" asp-for="Product.BCD.Size" value="@Size.L" id="size-L" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="size-L">L</label>
+
+                        </div>
+                        <span class="text-danger ms-2" asp-validation-for="Product.BCD.Size"></span>
+                    </div>
+                }
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label asp-for="StartDate" class="form-label">Startdato:</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                            <input asp-for="StartDate" type="text" class="form-control" placeholder="Vælg startdato">
+                        </div>
+                        <span class="text-danger" asp-validation-for="StartDate"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="EndDate" class="form-label">Slutdato:</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar-check"></i></span>
+                            <input asp-for="EndDate" type="text" class="form-control" placeholder="Vælg slutdato">
+                        </div>
+                        <span class="text-danger" asp-validation-for="EndDate"></span>
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="endDate">Slutdato:</label>
-                    <input id="endDate" name="endDate" class="form-control mb-1" type="date" disabled="disabled"
-                           value="@(Model.EndDate?.ToString("yyyy-MM-dd"))" />
-                </div>
+                @section Scripts {
+                    <script>
+                        const startInput = document.getElementById('StartDate');
+                        const endInput = document.getElementById('EndDate');
 
-                <script>
-                    const startInput = document.getElementById('startDate');
-                    const endInput = document.getElementById('endDate');
+                        const fpStart = flatpickr(startInput, {
+                            dateFormat: "Y-m-d",
+                            allowInput: true,
+                            minDate: "today",
+                            locale: flatpickr.l10ns.da,
+                            onChange: (selectedDates) => {
+                                if (selectedDates.length) {
+                                    const d = new Date(selectedDates[0]);
+                                    d.setDate(d.getDate() + 1);
+                                    fpEnd.set('minDate', d);
+                                    if (endInput.value && new Date(endInput.value) <= selectedDates[0]) {
+                                        fpEnd.clear();
+                                    }
+                                }
+                            }
+                        });
 
-                    const today = new Date();
-                    const yyyy = today.getFullYear();
-                    const mm = String(today.getMonth() + 1).padStart(2, '0');
-                    const dd = String(today.getDate()).padStart(2, '0');
-                    startInput.min = `${yyyy}-${mm}-${dd}`;
-
-                    startInput.addEventListener('change', function () {
-                        if (!this.value) return;
-
-                        // Lav en ny dato ud fra startdatoen
-                        const startDate = new Date(this.value);
-                        // Læg 1 dag til
-                        startDate.setDate(startDate.getDate() + 1);
-
-                        // Konverter til YYYY-MM-DD format (krævet af <input type="date">)
-                        const minEndDate = startDate.toISOString().split('T')[0];
-
-                        // Sæt min-værdien på slutdato
-                        endInput.min = minEndDate;
-
-                        // Hvis der allerede er valgt en ugyldig slutdato, nulstil den
-                        if (endInput.value && endInput.value < minEndDate) {
-                            endInput.value = "";
-                        }
-                        endInput.disabled = false;
-                    });
-                </script>
+                        const fpEnd = flatpickr(endInput, {
+                            dateFormat: "Y-m-d",
+                            allowInput: true,
+                            locale: flatpickr.l10ns.da
+                        });
+                    </script>
+                }
 
                 @Html.AntiForgeryToken()
-                <button class="datepicker btn btn-primary btn-lg mb-3 me-2"><i class="bi bi-cart-plus me-2"></i>Tilføj til kurv</button>
+                <button class="btn btn-primary btn-lg mb-3 me-2"><i class="bi bi-cart-plus me-2"></i>Tilføj til kurv</button>
             </form>
 
             @*             

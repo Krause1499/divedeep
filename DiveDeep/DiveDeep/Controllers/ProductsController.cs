@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiveDeep.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DiveDeep.Controllers
 {
@@ -7,7 +8,11 @@ namespace DiveDeep.Controllers
         public IActionResult ProductInfo(int id)
         {
             var product = Persistence.ProductRepository.GetByID(id);
-            return View(product);
+            var pdvm = new ProductDetailsViewModel
+            {
+                Product = product
+            };
+            return View(pdvm);
         }
     }
 }

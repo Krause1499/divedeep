@@ -2,8 +2,8 @@
 {
     public record RegulatorSpecs
     {
-        public string StageOne { get; set; }
-        public string StageTwo { get; set; }
-        public string Octopus { get; set; }
+        public string? StageOne { get; set; }
+        public string? StageTwo { get; set; }
+        public string? Octopus { get; set; }
     }
 }

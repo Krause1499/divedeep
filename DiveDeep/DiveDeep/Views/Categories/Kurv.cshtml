@@ -3,11 +3,11 @@
 *@
 @{
     ViewData["Title"] = "Kurv";
-    List<Category> categories = new List<Category>
-    {
-        new BCD { Id = 1, Model = "BCD Model A", Brand = "Brand A", StartDate = new DateOnly(2025, 9, 12), EndDate = new DateOnly(2025, 9, 15), ProductType = ProductType.BCD, Price = 10, FilePath = "/Images/SnorkelPNG.webp" },
-        new Fin { Id = 2, Model = "Fin Model B", Brand = "Brand B", StartDate = new DateOnly(2025, 9, 12), EndDate = new DateOnly(2025, 9, 18), ProductType = ProductType.Fin, Price = 10, FilePath = "/Images/SnorkelPNG.webp" },
-    };
+    // List<Category> categories = new List<Category>
+    // {
+    //     new BCD { Id = 1, Model = "BCD Model A", Brand = "Brand A", StartDate = new DateOnly(2025, 9, 12), EndDate = new DateOnly(2025, 9, 15), ProductType = ProductType.BCD, Price = 10, FilePath = "/Images/SnorkelPNG.webp" },
+    //     new Fin { Id = 2, Model = "Fin Model B", Brand = "Brand B", StartDate = new DateOnly(2025, 9, 12), EndDate = new DateOnly(2025, 9, 18), ProductType = ProductType.Fin, Price = 10, FilePath = "/Images/SnorkelPNG.webp" },
+    // };
     double totalPrice = 0;
     double totalPriceFørMoms = 0;
     int totalDays = 0;
@@ -23,7 +23,7 @@
             <!-- Cart Items -->
             <div class="card mb-4">
                 <div class="card-body">
-                    @foreach (Category item in categories)
+                    @foreach (OrderItem item in Order.Items)
                     {
                         <div class="row align-items-center gy-2 py-2">
                             <div class="col-auto">
@@ -83,7 +83,7 @@
                     <div class="d-flex justify-content-between mb-3">
                         <span>Subtotal</span>
                         <strong>
-                            @foreach (var item in categories)
+                            @foreach (var item in Order.Items)
                             {
                                 totalDays = @item.EndDate.Value.Day - item.StartDate.Value.Day;
                                 totalPrice += item.Price * totalDays;

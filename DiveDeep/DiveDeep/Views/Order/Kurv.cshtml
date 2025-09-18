@@ -3,11 +3,6 @@
 *@
 @{
     ViewData["Title"] = "Kurv";
-    List<Category> categories = new List<Category>
-    {
-        new BCD { Id = 1, Model = "BCD Model A", Brand = "Brand A", StartDate = new DateOnly(2025, 9, 12), EndDate = new DateOnly(2025, 9, 15), ProductType = ProductType.BCD, Price = 10, FilePath = "/Images/SnorkelPNG.webp" },
-        new Fin { Id = 2, Model = "Fin Model B", Brand = "Brand B", StartDate = new DateOnly(2025, 9, 12), EndDate = new DateOnly(2025, 9, 18), ProductType = ProductType.Fin, Price = 10, FilePath = "/Images/SnorkelPNG.webp" },
-    };
     double totalPrice = 0;
     double totalPriceFørMoms = 0;
     int totalDays = 0;
@@ -47,30 +42,31 @@
                                         totalDays = @item.EndDate.Value.Day - item.StartDate.Value.Day;
                                     }
                                         @totalDays
-                                </p>
-                            </div>
+                                    </p>
+                                    <p class="mb-0">Størrelse: @item.Size</p>
+                                </div>
 
-                            <div class="input-group input-group-sm" style="max-width:120px;">
-                                <button class="btn btn-outline-secondary" type="button">-</button>
-                                <input type="text" class="form-control text-center" value="1">
-                                <button class="btn btn-outline-secondary" type="button">+</button>
-                            </div>
+                                <div class="input-group input-group-sm" style="max-width:120px;">
+                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                    <input type="text" class="form-control text-center" value="1">
+                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                </div>
 
-                            <div class="d-flex align-items-center gap-2">
-                                <strong>
-                                    @{
-                                        double price = 0;
-                                        price = @item.Price * totalDays;
-                                    }
-                                        @price DKK
-                                </strong>
-                                <button class="btn btn-sm btn-outline-danger">
-                                    <i class="bi bi-trash"></i>
-                                </button>
+                                <div class="d-flex align-items-center gap-2">
+                                    <strong>
+                                        @{
+                                            double price = 0;
+                                            price = @item.Price * totalDays;
+                                        }
+                                            @price DKK
+                                    </strong>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                                        }
+                    }
                 </div>
             </div>
             <!-- Continue Shopping Button -->

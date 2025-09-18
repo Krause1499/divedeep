@@ -2,6 +2,6 @@
 {
     public record OxygenTankSpecs
     {
-        public int VolumeInL { get; set; }
+        public int? VolumeInL { get; set; }
     }
 }

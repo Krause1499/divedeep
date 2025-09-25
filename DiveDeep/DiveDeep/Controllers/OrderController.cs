@@ -8,10 +8,17 @@ namespace DiveDeep.Controllers
 {
     public class OrderController : Controller
     {
+        private readonly IProductRepository _productRepository;
+
+        public OrderController(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
         [HttpPost]
         public IActionResult Add(ProductDetailsViewModel pdvm)
         {
-            var product = ProductRepository.Products.FirstOrDefault(p => p.Id == pdvm.Product.Id);
+            var product = _productRepository.GetByID(pdvm.Product.Id);
             if (product is null) return NotFound();
 
             if (product.ProductType != ProductType.BCD)

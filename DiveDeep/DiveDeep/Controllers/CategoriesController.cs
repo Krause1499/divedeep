@@ -1,42 +1,50 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiveDeep.Persistence;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DiveDeep.Controllers
 {
     public class CategoriesController : Controller
     {
+        private readonly IProductRepository _productRepository;
+
+        public CategoriesController(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
         public IActionResult BCD()
         {
-            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.BCD);
+            var categories = _productRepository.GetAllProductsByType(Models.ProductType.BCD);
             return View(categories);
         }
         public IActionResult Dykkerdragter()
         {
-            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.DivingSuit);
+            var categories = _productRepository.GetAllProductsByType(Models.ProductType.DivingSuit);
             return View(categories);
         }
         public IActionResult Tanke()
         {
-            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.OxygenTank);
+            var categories = _productRepository.GetAllProductsByType(Models.ProductType.OxygenTank);
             return View(categories);
         }
         public IActionResult Regulatorsæt()
         {
-            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.Regulator);
+            var categories = _productRepository.GetAllProductsByType(Models.ProductType.Regulator);
             return View(categories);
         }
         public IActionResult MaskerSnorkler()
         {
-            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.Snorkel);
+            var categories = _productRepository.GetAllProductsByType(Models.ProductType.Snorkel);
             return View(categories);
         }
         public IActionResult Finner()
         {
-            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.Fins);
+            var categories = _productRepository.GetAllProductsByType(Models.ProductType.Fins);
             return View(categories);
         }
         public IActionResult DykkerSæt()
         {
-            var categories = Persistence.ProductRepository.GetAllProductsByType(Models.ProductType.DivingSet);
+            var categories = _productRepository.GetAllProductsByType(Models.ProductType.DivingSet);
             return View(categories);
         }
 

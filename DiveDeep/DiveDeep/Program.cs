@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using DiveDeep.Data;
+using DiveDeep.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<DiveDeepContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDBConnection") ?? throw new InvalidOperationException("Connection string 'MyDBConnection' not found.")));
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 
 var app = builder.Build();
 
@@ -24,4 +32,11 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<DiveDeepContext>();
+    context.Database.Migrate();
+    DbInitializer.Seed(context);
+}
 app.Run();

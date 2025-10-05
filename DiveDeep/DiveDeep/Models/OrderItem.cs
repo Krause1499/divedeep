@@ -18,5 +18,8 @@
         public ProductType? ProductType { get; set; }
         public DateOnly? StartDate { get; set; }
         public DateOnly? EndDate { get; set; }
+
+        public int OrderId { get; set; }
+        public Order Order { get; set; }
     }
 }

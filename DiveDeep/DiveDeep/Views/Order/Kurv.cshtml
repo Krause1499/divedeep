@@ -1,4 +1,6 @@
-﻿@*
+﻿@using DiveDeep.Persistence
+@using DiveDeep.Models
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -7,6 +9,7 @@
     double totalPriceFørMoms = 0;
     int totalDays = 0;
 }
+@model List<OrderItem>
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
@@ -18,7 +21,7 @@
             <!-- Cart Items -->
             <div class="card mb-4">
                 <div class="card-body">
-                    @foreach (var item in Order.Items)
+                    @foreach (var item in Model)
                     {
                         <div class="row align-items-center gy-2 py-2">
                             <div class="col-auto">
@@ -84,7 +87,7 @@
                     <div class="d-flex justify-content-between mb-3">
                         <span>Subtotal</span>
                         <strong>
-                            @foreach (var item in Order.Items)
+                            @foreach (var item in Model)
                             {
                                 totalDays = @item.EndDate.Value.Day - item.StartDate.Value.Day;
                                 totalPrice += item.Price * totalDays;

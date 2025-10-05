@@ -6,6 +6,8 @@ namespace DiveDeep.Data
     public class DiveDeepContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItem> OrderItem { get; set; }
 
         public DiveDeepContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
@@ -15,6 +17,11 @@ namespace DiveDeep.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var m = modelBuilder.Entity<Product>();
+
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.Items)
+                .WithOne(oi => oi.Order)
+                .HasForeignKey(oi => oi.OrderId);
 
             m.Property(p => p.ProductType).HasConversion<string>();
 

@@ -9,10 +9,12 @@ namespace DiveDeep.Controllers
     public class OrderController : Controller
     {
         private readonly IProductRepository _products;
+        private readonly IOrderRepository _order;
 
-        public OrderController(IProductRepository products)
+        public OrderController(IProductRepository products, IOrderRepository order)
         {
             _products = products;
+            _order = order;
         }
 
         [HttpPost]
@@ -37,12 +39,14 @@ namespace DiveDeep.Controllers
                 ModelState.Remove("Product.DivingSuit.Gender");
             }
 
+            var orderId = _order.GetOrCreateCurrentOrderId();
+
                 if (ModelState.IsValid)
                 {
                     // Lav et snapshot (OrderItem) ud fra produktet
                     var item = new OrderItem
                     {
-                        Id = product.Id,
+                        OrderId = orderId,
                         FilePath = product.FilePath,
                         Brand = product.Brand,
                         Price = product.DailyPrice,
@@ -67,7 +71,7 @@ namespace DiveDeep.Controllers
                     item.Size = pdvm.Size;
                 }
 
-                Order.Items.Add(item);
+                _order.AddItemToOrder(item);
                 pdvm.Product = product;
                 return View("~/Views/Products/ProductInfo.cshtml", pdvm);
                 }
@@ -76,9 +80,11 @@ namespace DiveDeep.Controllers
             // Gå til oversigten
             return View("~/Views/Products/ProductInfo.cshtml", pdvm);
         }
-        public IActionResult Kurv()
+        public IActionResult Kurv(int id)
         {
-            return View();
+            var currentOrder = _order.GetAllItems(id);
+
+            return View(currentOrder);
         }
     }
 }

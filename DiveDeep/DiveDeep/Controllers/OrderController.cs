@@ -46,18 +46,18 @@ namespace DiveDeep.Controllers
 
                 if (product.ProductType is ProductType.BCD)
                 {
-                    item.Size = pdvm.Product.BCD.Size;
+                    item.Size = pdvm.Size;
                 }
 
                 if (product.ProductType is ProductType.DivingSuit)
                 {
-                    item.Size = pdvm.Product.DivingSuit.Size;
-                    item.Gender = pdvm.Product.DivingSuit.Gender;
+                    item.Size = pdvm.Size;
+                    item.Gender = pdvm.Gender;
                 }
 
                 if (product.ProductType is ProductType.Fins)
                 {
-                    item.Size = pdvm.Product.Fins.Size;
+                    item.Size = pdvm.Size;
                 }
 
                 Order.Items.Add(item);

@@ -67,23 +67,23 @@
                         <h5>Vælg størrelse:</h5>
                         <div class="btn-group" role="group" aria-label="Valg af størrelse">
 
-                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.XS" id="size-XS" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Sizes" value="@Size.XS" id="size-XS" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-XS">XS</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.S" id="size-S" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Sizes" value="@Size.S" id="size-S" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-S">S</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.M" id="size-M" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Sizes" value="@Size.M" id="size-M" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-M">M</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.L" id="size-L" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Sizes" value="@Size.L" id="size-L" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-L">L</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.Fins.Size" value="@Size.XL" id="size-XL" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.Fins.Sizes" value="@Size.XL" id="size-XL" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-XL">XL</label>
 
                         </div>
-                        <span class="text-danger ms-2" asp-validation-for="Product.Fins.Size"></span>
+                        <span class="text-danger ms-2" asp-validation-for="Product.Fins.Sizes"></span>
                     </div>
                 }
                 @if (Model.Product.ProductType is ProductType.DivingSuit)
@@ -92,23 +92,23 @@
                         <h5>Vælg størrelse:</h5>
                         <div class="btn-group" role="group" aria-label="Valg af størrelse">
 
-                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.XS" id="size-XS" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Sizes" value="@Size.XS" id="size-XS" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-XS">XS</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.S" id="size-S" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Sizes" value="@Size.S" id="size-S" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-S">S</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.M" id="size-M" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Sizes" value="@Size.M" id="size-M" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-M">M</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.L" id="size-L" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Sizes" value="@Size.L" id="size-L" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-L">L</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Size" value="@Size.XL" id="size-XL" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Sizes" value="@Size.XL" id="size-XL" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-XL">XL</label>
 
                         </div>
-                        <span class="text-danger ms-2" asp-validation-for="Product.DivingSuit.Size"></span>
+                        <span class="text-danger ms-2" asp-validation-for="Product.DivingSuit.Sizes"></span>
                     </div>
                 }
                  @if (Model.Product.ProductType is ProductType.DivingSuit)
@@ -117,13 +117,13 @@
                         <h5>Vælg køn:</h5>
                         <div class="btn-group" role="group" aria-label="Valg af køn">
 
-                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Gender" value="@Gender.Herre" id="gender-Male" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Genders" value="@Gender.Herre" id="gender-Male" autocomplete="off">
                             <label class="btn btn-outline-primary" for="gender-Male">Mand</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Gender" value="@Gender.Dame" id="gender-Female" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.DivingSuit.Genders" value="@Gender.Dame" id="gender-Female" autocomplete="off">
                             <label class="btn btn-outline-primary" for="gender-Female">Kvinde</label>
 
-                            <span class="text-danger ms-2" asp-validation-for="Product.DivingSuit.Gender"></span>
+                            <span class="text-danger ms-2" asp-validation-for="Product.DivingSuit.Genders"></span>
 
                         </div>
                     </div>
@@ -135,17 +135,17 @@
                         <h5>Vælg størrelse:</h5>
                         <div class="btn-group" role="group" aria-label="Valg af størrelse">
 
-                            <input type="radio" class="btn-check" asp-for="Product.BCD.Size" value="@Size.S" id="size-S" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.BCD.Sizes" value="@Size.S" id="size-S" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-S">S</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.BCD.Size" value="@Size.M" id="size-M" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.BCD.Sizes" value="@Size.M" id="size-M" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-M">M</label>
 
-                            <input type="radio" class="btn-check" asp-for="Product.BCD.Size" value="@Size.L" id="size-L" autocomplete="off">
+                            <input type="radio" class="btn-check" asp-for="Product.BCD.Sizes" value="@Size.L" id="size-L" autocomplete="off">
                             <label class="btn btn-outline-primary" for="size-L">L</label>
 
                         </div>
-                        <span class="text-danger ms-2" asp-validation-for="Product.BCD.Size"></span>
+                        <span class="text-danger ms-2" asp-validation-for="Product.BCD.Sizes"></span>
                     </div>
                 }
 

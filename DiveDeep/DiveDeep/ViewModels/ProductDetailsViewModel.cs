@@ -10,5 +10,7 @@ namespace DiveDeep.ViewModels
         public DateOnly? StartDate { get; set; }
         [Required(ErrorMessage = "Vælg en slutdato")]
         public DateOnly? EndDate { get; set; }
+        public Size Size { get; set; }
+        public Gender Gender { get; set; }
     }
 }

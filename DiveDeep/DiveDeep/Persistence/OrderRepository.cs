@@ -14,13 +14,13 @@ namespace DiveDeep.Persistence
 
         public int GetOrCreateCurrentOrderId()
         {
-            var order = _context.Order
+            var order = _context.Orders
                 .FirstOrDefault();
 
             if (order == null)
             {
                 order = new Order();
-                _context.Order.Add(order);
+                _context.Orders.Add(order);
                 _context.SaveChanges();
             }
 
@@ -31,7 +31,7 @@ namespace DiveDeep.Persistence
         {
             if (item == null) return;
 
-            _context.OrderItem.Add(item);
+            _context.OrderItems.Add(item);
             _context.SaveChanges();
         }
 
@@ -42,7 +42,7 @@ namespace DiveDeep.Persistence
 
         public List<OrderItem> GetAllItems(int orderId)
         {
-            return _context.OrderItem
+            return _context.OrderItems
                 .Where(o => o.OrderId == orderId)
                 .ToList();
         }

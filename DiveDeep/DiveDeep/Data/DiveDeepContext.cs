@@ -6,8 +6,8 @@ namespace DiveDeep.Data
     public class DiveDeepContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
-        public DbSet<Order> Order { get; set; }
-        public DbSet<OrderItem> OrderItem { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         public DiveDeepContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {

@@ -2,7 +2,7 @@
 {
     public class Product
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public ProductType? ProductType { get; set; }
         public string? Brand { get; set; }
         public string? Description { get; set; }

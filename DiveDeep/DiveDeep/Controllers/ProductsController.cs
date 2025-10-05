@@ -1,13 +1,21 @@
-﻿using DiveDeep.ViewModels;
+﻿using DiveDeep.Persistence;
+using DiveDeep.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiveDeep.Controllers
 {
     public class ProductsController : Controller
     {
+        private readonly IProductRepository _products;
+
+        public ProductsController(IProductRepository products)
+        {
+            _products = products;
+        }
+
         public IActionResult ProductInfo(int id)
         {
-            var product = Persistence.ProductRepository.GetByID(id);
+            var product = _products.GetByID(id);
             var pdvm = new ProductDetailsViewModel
             {
                 Product = product

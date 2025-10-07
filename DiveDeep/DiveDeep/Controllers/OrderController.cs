@@ -1,6 +1,7 @@
 ﻿using DiveDeep.Models;
 using DiveDeep.Persistence;
 using DiveDeep.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
@@ -85,6 +86,14 @@ namespace DiveDeep.Controllers
             var currentOrder = _order.GetAllItems(id);
 
             return View(currentOrder);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Oversigt(Order order)
+        {
+            _order.ConfirmOrder(order);
+            return View();
         }
     }
 }

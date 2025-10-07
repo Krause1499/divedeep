@@ -1,5 +1,6 @@
 ﻿using DiveDeep.Data;
 using DiveDeep.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiveDeep.Persistence
 {
@@ -35,16 +36,25 @@ namespace DiveDeep.Persistence
             _context.SaveChanges();
         }
 
+        public void ConfirmOrder(Order order)
+        {
+            if (order == null) return;
+
+            var orderToConfirm = _context.Orders.FirstOrDefault(o => o.OrderId == order.OrderId);
+            orderToConfirm.IsConfirmed = true;
+            _context.SaveChanges();
+        }
+
         public void RemoveItemFromOrder(OrderItem item)
         {
             throw new NotImplementedException();
         }
 
-        public List<OrderItem> GetAllItems(int orderId)
+        public Order GetAllItems(int orderId)
         {
-            return _context.OrderItems
-                .Where(o => o.OrderId == orderId)
-                .ToList();
+            return _context.Orders
+                .Include(o => o.Items)
+                .FirstOrDefault(o => o.OrderId == orderId);
         }
     }
 }

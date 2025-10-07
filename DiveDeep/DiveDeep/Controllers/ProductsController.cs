@@ -1,5 +1,6 @@
 ﻿using DiveDeep.Persistence;
 using DiveDeep.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiveDeep.Controllers

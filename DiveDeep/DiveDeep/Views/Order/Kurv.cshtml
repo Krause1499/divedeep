@@ -9,7 +9,7 @@
     double totalPriceFørMoms = 0;
     int totalDays = 0;
 }
-@model List<OrderItem>
+@model Order
 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
@@ -21,7 +21,7 @@
             <!-- Cart Items -->
             <div class="card mb-4">
                 <div class="card-body">
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Items)
                     {
                         <div class="row align-items-center gy-2 py-2">
                             <div class="col-auto">
@@ -87,7 +87,7 @@
                     <div class="d-flex justify-content-between mb-3">
                         <span>Subtotal</span>
                         <strong>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Items)
                             {
                                 totalDays = @item.EndDate.Value.Day - item.StartDate.Value.Day;
                                 totalPrice += item.Price * totalDays;
@@ -113,7 +113,10 @@
                             @($"{totalPrice} DKK")
                         </strong>
                     </div>
-                    <button class="btn btn-primary w-100">Betal nu</button>
+                    <form asp-controller="Order" asp-action="Oversigt" method="post">
+                        <input type="hidden" asp-for="OrderId" />
+                        <button class="btn btn-primary w-100">Betal nu</button>
+                    </form>
                 </div>
             </div>
             <!-- Promo Code -->

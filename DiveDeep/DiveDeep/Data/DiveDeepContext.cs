@@ -1,21 +1,24 @@
 ﻿using DiveDeep.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiveDeep.Data
 {
-    public class DiveDeepContext : DbContext
+    public class DiveDeepContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
-        public DiveDeepContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        public DiveDeepContext(DbContextOptions<DiveDeepContext> dbContextOptions) : base(dbContextOptions)
         {
             
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             var m = modelBuilder.Entity<Product>();
 
             modelBuilder.Entity<Order>()
@@ -197,6 +200,11 @@ namespace DiveDeep.Data
                 new { ProductId = 28, Model = "Scout Enhance" },
                 new { ProductId = 29, Model = "Element" }
             );
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Orders)
+                .WithOne(o => o.User)
+                .HasForeignKey(o => o.UserId);
         }
     }
 }

@@ -6,7 +6,8 @@ namespace DiveDeep.Persistence
     {
         void AddItemToOrder(OrderItem item);
         void RemoveItemFromOrder(OrderItem item);
-        List<OrderItem> GetAllItems(int orderId);
+        Order GetAllItems(int orderId);
         int GetOrCreateCurrentOrderId();
+        void ConfirmOrder(Order order);
     }
 }

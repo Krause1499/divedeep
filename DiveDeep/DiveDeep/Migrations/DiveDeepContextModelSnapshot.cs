@@ -35,7 +35,7 @@ namespace DiveDeep.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("DiveDeep.Models.OrderItem", b =>
@@ -98,7 +98,7 @@ namespace DiveDeep.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItem", (string)null);
                 });
 
             modelBuilder.Entity("DiveDeep.Models.Product", b =>
@@ -126,7 +126,7 @@ namespace DiveDeep.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new
@@ -408,7 +408,7 @@ namespace DiveDeep.Migrations
 
             modelBuilder.Entity("DiveDeep.Models.Product", b =>
                 {
-                    b.OwnsOne("DiveDeep.Models.BCDSpecs", "BCD", b1 =>
+                    b.OwnsOne("DiveDeep.Models.Product.BCD#DiveDeep.Models.BCDSpecs", "BCD", b1 =>
                         {
                             b1.Property<int>("ProductId")
                                 .HasColumnType("int");
@@ -453,7 +453,7 @@ namespace DiveDeep.Migrations
                                 });
                         });
 
-                    b.OwnsOne("DiveDeep.Models.DivingSuitSpecs", "DivingSuit", b1 =>
+                    b.OwnsOne("DiveDeep.Models.Product.DivingSuit#DiveDeep.Models.DivingSuitSpecs", "DivingSuit", b1 =>
                         {
                             b1.Property<int>("ProductId")
                                 .HasColumnType("int");
@@ -552,7 +552,7 @@ namespace DiveDeep.Migrations
                                 });
                         });
 
-                    b.OwnsOne("DiveDeep.Models.FinsSpecs", "Fins", b1 =>
+                    b.OwnsOne("DiveDeep.Models.Product.Fins#DiveDeep.Models.FinsSpecs", "Fins", b1 =>
                         {
                             b1.Property<int>("ProductId")
                                 .HasColumnType("int");
@@ -615,7 +615,7 @@ namespace DiveDeep.Migrations
                                 });
                         });
 
-                    b.OwnsOne("DiveDeep.Models.MaskSnorkelSpecs", "MaskSnorkel", b1 =>
+                    b.OwnsOne("DiveDeep.Models.Product.MaskSnorkel#DiveDeep.Models.MaskSnorkelSpecs", "MaskSnorkel", b1 =>
                         {
                             b1.Property<int>("ProductId")
                                 .HasColumnType("int");
@@ -668,7 +668,7 @@ namespace DiveDeep.Migrations
                                 });
                         });
 
-                    b.OwnsOne("DiveDeep.Models.OxygenTankSpecs", "OxygenTank", b1 =>
+                    b.OwnsOne("DiveDeep.Models.Product.OxygenTank#DiveDeep.Models.OxygenTankSpecs", "OxygenTank", b1 =>
                         {
                             b1.Property<int>("ProductId")
                                 .HasColumnType("int");
@@ -706,7 +706,7 @@ namespace DiveDeep.Migrations
                                 });
                         });
 
-                    b.OwnsOne("DiveDeep.Models.RegulatorSpecs", "Regulator", b1 =>
+                    b.OwnsOne("DiveDeep.Models.Product.Regulator#DiveDeep.Models.RegulatorSpecs", "Regulator", b1 =>
                         {
                             b1.Property<int>("ProductId")
                                 .HasColumnType("int");

@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Order>
+
+<h1>Mine ordrer:</h1>
+
+<div class="d-flex flex-wrap gap-3">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
+                <th scope="col">Room</th>
+                <th scope="col">Booked by</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.TotalPrice</td>
+                    <td>@order.IsConfirmed</td>
+                    <td>@(order.User)</td>
+@*                     <td>
+                        <a asp-controller="Bookings" asp-action="Edit" asp-route-id="@booking.BookingId" class="btn btn-link">Edit</a>
+                        <a asp-controller="Bookings" asp-action="Delete" asp-route-id="@booking.BookingId" class="btn btn-link">Delete</a>
+                    </td> *@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

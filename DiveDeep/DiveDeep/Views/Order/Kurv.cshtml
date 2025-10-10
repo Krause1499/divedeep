@@ -115,6 +115,7 @@
                     </div>
                     <form asp-controller="Order" asp-action="Oversigt" method="post">
                         <input type="hidden" asp-for="OrderId" />
+                        <input type="hidden" asp-for="UserId" />
                         <button class="btn btn-primary w-100">Betal nu</button>
                     </form>
                 </div>

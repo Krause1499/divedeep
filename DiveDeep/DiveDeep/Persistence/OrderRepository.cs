@@ -13,14 +13,15 @@ namespace DiveDeep.Persistence
             _context = context;
         }
 
-        public int GetOrCreateCurrentOrderId()
+        public int GetOrCreateCurrentOrderId(string id)
         {
             var order = _context.Orders
-                .FirstOrDefault();
+                .FirstOrDefault(o => o.UserId == id);
 
             if (order == null)
             {
                 order = new Order();
+                order.UserId = id;
                 _context.Orders.Add(order);
                 _context.SaveChanges();
             }
@@ -42,6 +43,7 @@ namespace DiveDeep.Persistence
 
             var orderToConfirm = _context.Orders.FirstOrDefault(o => o.OrderId == order.OrderId);
             orderToConfirm.IsConfirmed = true;
+            orderToConfirm.UserId = order.UserId;
             _context.SaveChanges();
         }
 
@@ -55,6 +57,12 @@ namespace DiveDeep.Persistence
             return _context.Orders
                 .Include(o => o.Items)
                 .FirstOrDefault(o => o.OrderId == orderId);
+        }
+
+        public List<Order> GetAllOrders()
+        {
+            return _context.Orders
+                .ToList();
         }
     }
 }

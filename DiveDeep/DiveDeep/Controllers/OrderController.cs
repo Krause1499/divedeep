@@ -2,8 +2,10 @@
 using DiveDeep.Persistence;
 using DiveDeep.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using SQLitePCL;
 
 namespace DiveDeep.Controllers
 {
@@ -11,11 +13,13 @@ namespace DiveDeep.Controllers
     {
         private readonly IProductRepository _products;
         private readonly IOrderRepository _order;
+        private readonly UserManager<ApplicationUser> _user;
 
-        public OrderController(IProductRepository products, IOrderRepository order)
+        public OrderController(IProductRepository products, IOrderRepository order, UserManager<ApplicationUser> user)
         {
             _products = products;
             _order = order;
+            _user = user;
         }
 
         [HttpPost]
@@ -40,7 +44,9 @@ namespace DiveDeep.Controllers
                 ModelState.Remove("Product.DivingSuit.Gender");
             }
 
-            var orderId = _order.GetOrCreateCurrentOrderId();
+            var userId = _user.GetUserId(User);
+
+            var orderId = _order.GetOrCreateCurrentOrderId(userId);
 
                 if (ModelState.IsValid)
                 {
@@ -81,9 +87,13 @@ namespace DiveDeep.Controllers
             // Gå til oversigten
             return View("~/Views/Products/ProductInfo.cshtml", pdvm);
         }
-        public IActionResult Kurv(int id)
+        public IActionResult Kurv()
         {
-            var currentOrder = _order.GetAllItems(id);
+            var userId = _user.GetUserId(User);
+
+            var orderId = _order.GetOrCreateCurrentOrderId(userId);
+
+            var currentOrder = _order.GetAllItems(orderId);
 
             return View(currentOrder);
         }
@@ -92,8 +102,33 @@ namespace DiveDeep.Controllers
         [Authorize]
         public IActionResult Oversigt(Order order)
         {
+            var userId = _user.GetUserId(User);
+
+            order.UserId = userId;
+
             _order.ConfirmOrder(order);
             return View();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult MineOrdrer()
+        {
+            var userId = _user.GetUserId(User);
+            List<Order> orders;
+
+            if (User.IsInRole("Admin"))
+            {
+                orders = _order.GetAllOrders();
+            }
+            else
+            {
+                orders = _order.GetAllOrders()
+                    .Where(o => o.UserId == userId)
+                    .ToList();
+            }
+            
+            return View(orders);
         }
     }
 }

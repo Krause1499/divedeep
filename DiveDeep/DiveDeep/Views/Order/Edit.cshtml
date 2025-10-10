@@ -1,0 +1,138 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Order
+
+<div class="row">
+@foreach (var item in Model.Items)
+{
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="@Url.Content(item.FilePath)" class="card-img-top" alt="test">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Model)</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </h6>
+                <p class="card-text">
+                    @Html.DisplayFor(modelItem => item.Price) kr. pr. dag
+                </p>
+                <form>
+                    <div class="text-danger" asp-validation-summary="All"></div>
+
+                    @if (item.ProductType is ProductType.Fins)
+                    {
+                        <div class="mb-4">
+                            <h5>Vælg størrelse:</h5>
+                            <div class="btn-group" role="group" aria-label="Valg af størrelse">
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.XS" id="size-XS" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-XS">XS</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.S" id="size-S" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-S">S</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.M" id="size-M" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-M">M</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.L" id="size-L" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-L">L</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.XL" id="size-XL" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-XL">XL</label>
+
+                            </div>
+                            <span class="text-danger ms-2" asp-validation-for="@item.Size"></span>
+                        </div>
+                    }
+                    @if (item.ProductType is ProductType.DivingSuit)
+                    {
+                        <div class="mb-4">
+                            <h5>Vælg størrelse:</h5>
+                            <div class="btn-group" role="group" aria-label="Valg af størrelse">
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.XS" id="size-XS" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-XS">XS</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.S" id="size-S" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-S">S</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.M" id="size-M" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-M">M</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.L" id="size-L" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-L">L</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.XL" id="size-XL" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-XL">XL</label>
+
+                            </div>
+                            <span class="text-danger ms-2" asp-validation-for="@item.Size"></span>
+                        </div>
+                    }
+                    @if (@item.ProductType is ProductType.DivingSuit)
+                    {
+                        <div class="mb-4">
+                            <h5>Vælg køn:</h5>
+                            <div class="btn-group" role="group" aria-label="Valg af køn">
+
+                                <input type="radio" class="btn-check" asp-for="@item.Gender" value="@Gender.Herre" id="gender-Male" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="gender-Male">Mand</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Gender" value="@Gender.Dame" id="gender-Female" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="gender-Female">Kvinde</label>
+
+                                <span class="text-danger ms-2" asp-validation-for="@item.Gender"></span>
+
+                            </div>
+                        </div>
+                    }
+
+                    @if (item.ProductType is ProductType.BCD)
+                    {
+                        <div class="mb-4">
+                            <h5>Vælg størrelse:</h5>
+                            <div class="btn-group" role="group" aria-label="Valg af størrelse">
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.S" id="size-S" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-S">S</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.M" id="size-M" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-M">M</label>
+
+                                <input type="radio" class="btn-check" asp-for="@item.Size" value="@Size.L" id="size-L" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="size-L">L</label>
+
+                            </div>
+                            <span class="text-danger ms-2" asp-validation-for="@item.Size"></span>
+                        </div>
+                    }
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label asp-for="@item.StartDate" class="form-label">Startdato:</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                                <input asp-for="@item.StartDate" type="text" class="form-control" placeholder="Vælg startdato">
+                            </div>
+                            <span class="text-danger" asp-validation-for="@item.StartDate"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="@item.EndDate" class="form-label">Slutdato:</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calendar-check"></i></span>
+                                <input asp-for="@item.EndDate" type="text" class="form-control" placeholder="Vælg slutdato">
+                            </div>
+                            <span class="text-danger" asp-validation-for="@item.EndDate"></span>
+                        </div>
+                    </div>
+                </form>
+                @* <a asp-area="" asp-controller="Products" asp-action="ProductInfo" asp-route-id="@item.Id" class="stretched-link"></a> *@
+            </div>
+        </div>
+    </div>
+}
+</div>

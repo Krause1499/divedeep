@@ -22,6 +22,16 @@ namespace DiveDeep.Controllers
             _user = user;
         }
 
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            return NotFound();
+
+            var order = _order.GetOrder(id.Value);
+
+            return View(order);
+        }
+
         [HttpPost]
         public IActionResult Add(ProductDetailsViewModel pdvm)
         {

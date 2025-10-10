@@ -64,5 +64,12 @@ namespace DiveDeep.Persistence
             return _context.Orders
                 .ToList();
         }
+
+        public Order GetOrder(int orderId)
+        {
+            return _context.Orders
+                .Include(o => o.Items)
+                .FirstOrDefault(o => o.OrderId == orderId);
+        }
     }
 }

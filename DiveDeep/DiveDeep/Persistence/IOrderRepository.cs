@@ -10,5 +10,6 @@ namespace DiveDeep.Persistence
         int GetOrCreateCurrentOrderId(string id);
         void ConfirmOrder(Order order);
         List<Order> GetAllOrders();
+        Order GetOrder(int orderId);
     }
 }

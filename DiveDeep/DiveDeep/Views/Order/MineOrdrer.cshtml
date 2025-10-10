@@ -5,18 +5,23 @@
 }
 @model List<Order>
 
-<h1>Mine ordrer:</h1>
+@if (User.IsInRole("Admin"))
+{
+    <h1>Alle ordrer:</h1>
+}
+else
+{
+    <h1>Mine ordrer:</h1>
+}
 
 <div class="d-flex flex-wrap gap-3">
 
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Start</th>
-                <th scope="col">End</th>
-                <th scope="col">Room</th>
-                <th scope="col">Booked by</th>
+                <th scope="col">OrdreID</th>
+                <th scope="col">Pris</th>
+                <th scope="col">Bestilt af</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -26,12 +31,14 @@
                 <tr>
                     <td>@order.OrderId</td>
                     <td>@order.TotalPrice</td>
-                    <td>@order.IsConfirmed</td>
-                    <td>@(order.User)</td>
-@*                     <td>
-                        <a asp-controller="Bookings" asp-action="Edit" asp-route-id="@booking.BookingId" class="btn btn-link">Edit</a>
-                        <a asp-controller="Bookings" asp-action="Delete" asp-route-id="@booking.BookingId" class="btn btn-link">Delete</a>
-                    </td> *@
+                    <td>@order.User</td> @*Skal vise hvilken User*@
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.OrderId" class="btn btn-link">Edit</a>
+                            <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.OrderId" class="btn btn-link">Delete</a>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

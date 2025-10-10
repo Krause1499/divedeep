@@ -17,6 +17,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<DiveDeepContext>();
 
 builder.Services.AddRazorPages();

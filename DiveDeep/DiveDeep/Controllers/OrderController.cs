@@ -22,6 +22,12 @@ namespace DiveDeep.Controllers
             _user = user;
         }
 
+        public IActionResult Delete(int id)
+        {
+            _order.RemoveItemFromOrder(id);
+            return RedirectToAction("Kurv");
+        }
+
         public IActionResult Edit(int? id)
         {
             if (id == null)

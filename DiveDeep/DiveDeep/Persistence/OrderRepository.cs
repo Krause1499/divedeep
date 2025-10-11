@@ -16,6 +16,7 @@ namespace DiveDeep.Persistence
         public int GetOrCreateCurrentOrderId(string id)
         {
             var order = _context.Orders
+                .Where(o => o.IsConfirmed == false)
                 .FirstOrDefault(o => o.UserId == id);
 
             if (order == null)
@@ -47,9 +48,13 @@ namespace DiveDeep.Persistence
             _context.SaveChanges();
         }
 
-        public void RemoveItemFromOrder(OrderItem item)
+        public void RemoveItemFromOrder(int id)
         {
-            throw new NotImplementedException();
+            var entityToDelete = _context.OrderItems.Find(id);
+            if (entityToDelete == null) return;
+
+            _context.Remove(entityToDelete);
+            _context.SaveChanges();
         }
 
         public Order GetAllItems(int orderId)
@@ -62,6 +67,7 @@ namespace DiveDeep.Persistence
         public List<Order> GetAllOrders()
         {
             return _context.Orders
+                .Include(o => o.User)
                 .ToList();
         }
 

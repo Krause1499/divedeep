@@ -63,9 +63,11 @@
                                         }
                                             @price DKK
                                     </strong>
-                                    <button class="btn btn-sm btn-outline-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                    <form asp-controller="Order" asp-action="Delete" asp-route-id="@item.Id" method="post">
+                                        <button class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

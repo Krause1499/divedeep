@@ -35,8 +35,8 @@ else
                     @if (User.IsInRole("Admin"))
                     {
                         <td>
-                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.OrderId" class="btn btn-link">Edit</a>
-                            <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.OrderId" class="btn btn-link">Delete</a>
+                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.OrderId" class="btn btn-link">Rediger</a>
+                            <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.OrderId" class="btn btn-link">Slet</a>
                         </td>
                     }
                 </tr>

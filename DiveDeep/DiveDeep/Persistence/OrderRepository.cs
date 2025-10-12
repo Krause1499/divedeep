@@ -110,6 +110,7 @@ namespace DiveDeep.Persistence
         {
             return _context.Orders
                 .Include(o => o.User)
+                .Where(o => o.IsConfirmed == true)
                 .ToList();
         }
 

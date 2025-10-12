@@ -13,6 +13,7 @@ namespace DiveDeep.Services
         Order GetAllItems(int orderId);
         List<Order> GetAllOrders();
         Order GetOrder(int orderId);
+        void DeleteOrder(int orderId);
     }
 
     public class OrderService : IOrderService
@@ -27,19 +28,13 @@ namespace DiveDeep.Services
         public OrderResult AddItemToOrder(ProductDetailsViewModel pdvm, int orderId)
         {
             if (pdvm == null)
-                return OrderResult.Fail(string.Empty, "Intet produkt at tilføje.");
-
-            if (pdvm.StartDate == null)
-                return OrderResult.Fail(nameof(pdvm.StartDate), "Vælg en startdato.");
-
-            if (pdvm.EndDate == null)
-                return OrderResult.Fail(nameof(pdvm.EndDate), "Vælg en slutdato.");
+                return OrderResult.Fail(string.Empty, "Intet produkt at tilføje");
 
             if (pdvm.StartDate >= pdvm.EndDate)
-                return OrderResult.Fail(nameof(pdvm.StartDate), "Startdato må ikke være efter slutdato.");
+                return OrderResult.Fail(nameof(pdvm.StartDate), "Startdato må ikke være efter slutdato");
 
             if (pdvm.StartDate < DateOnly.FromDateTime(DateTime.UtcNow))
-                return OrderResult.Fail(nameof(pdvm.StartDate), "Startdato må ikke være i fortiden.");
+                return OrderResult.Fail(nameof(pdvm.StartDate), "Startdato må ikke være i fortiden");
 
             try
             {
@@ -58,6 +53,11 @@ namespace DiveDeep.Services
                 return;
 
             _repo.ConfirmOrder(order);
+        }
+
+        public void DeleteOrder(int orderId)
+        {
+            _repo.DeleteOrder(orderId);
         }
 
         public Order GetAllItems(int orderId)

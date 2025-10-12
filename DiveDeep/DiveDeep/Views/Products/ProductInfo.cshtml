@@ -3,31 +3,57 @@
 }
 @model ProductDetailsViewModel
 
+@{
+    string modelName = "";
+    switch (Model.Product.ProductType)
+    {
+        case ProductType.BCD:
+            modelName = Model.Product.BCD.Model;
+            break;
+        case ProductType.DivingSuit:
+            modelName = Model.Product.DivingSuit.Model;
+            break;
+        case ProductType.Snorkel:
+            modelName = Model.Product.MaskSnorkel.Model;
+            break;
+        case ProductType.Fins:
+            modelName = Model.Product.Fins.Model;
+            break;
+        case ProductType.OxygenTank:
+            modelName = $"{Model.Product.OxygenTank.VolumeInL.ToString()} liter";
+            break;
+        case ProductType.Regulator:
+            modelName = $"{Model.Product.Regulator.StageOne.ToString()} {Model.Product.Regulator.StageTwo.ToString()} {Model.Product.Regulator.Octopus.ToString()}";
+            break;
+        default:
+            modelName = Model.Product.ProductType.ToString();
+            break;
+    }
+}
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/da.js"></script>
+
 <div class="container mt-5">
     <div class="row">
         <!-- Product Images -->
         <div class="col-md-6 mb-4">
-            <img src="@Url.Content(Model.Product.FilePath)" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage">
+            <img src="@Model.Product.FilePath" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage">
             <div class="d-flex justify-content-between">
             </div>
         </div>
 
         <!-- Product Details -->
         <div class="col-md-6">
-            <h2 class="mb-1">@Model.Product.Brand</h2>
+            <h2 class="mb-1">@modelName</h2>
             <p class="text-muted mb-3">@Model.Product.Brand</p>
             <div class="mb-3">
                 <span class="h4 mb-3">@Model.Product.DailyPrice kr. pr. dag</span>
             </div>
-            <p class="mb-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Aliquam sollicitudin augue eget est fringilla, nec feugiat ex venenatis. Maecenas ac velit eros.
-                Aliquam congue mauris elit, vitae tempus ante rutrum.
-            </p>
+            <p class="mb-3">@Model.Product.Description</p>
 
             <form asp-controller="Order" asp-action="Add" method="post" class="mt-3">
                  <input type="hidden" asp-for="Product.Id" /> 
@@ -179,16 +205,6 @@
             <button class="btn btn-outline-secondary btn-lg mb-3">
                 <i class="bi bi-heart"></i> Tilføj til ønskeliste
             </button> *@
-
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    function changeImage(event, src) {
-            document.getElementById('mainImage').src = src;
-            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-</script>

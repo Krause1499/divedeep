@@ -36,7 +36,7 @@ else
                     {
                         <td>
                             <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.OrderId" class="btn btn-link">Rediger</a>
-                            <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.OrderId" class="btn btn-link">Slet</a>
+                            <a asp-controller="Order" asp-action="DeleteOrder" asp-route-id="@order.OrderId" class="btn btn-link" onclick="return confirmDelete()">Slet</a>
                         </td>
                     }
                 </tr>
@@ -44,3 +44,11 @@ else
         </tbody>
     </table>
 </div>
+
+@section Scripts{
+    <script>
+        function confirmDelete() {
+            return confirm("Er du sikker på, at du vil slette denne ordre? Handlingen kan ikke fortrydes")
+        }
+    </script>
+}

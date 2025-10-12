@@ -5,7 +5,6 @@ namespace DiveDeep.Models
     public record BCDSpecs
     {
         public string? Model { get; set; }
-        //[Required(ErrorMessage = "Vælg en størrelse")]
         public IReadOnlyList<Size>? Sizes { get; set; } = Array.Empty<Size>();
     }
 }

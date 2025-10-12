@@ -29,6 +29,12 @@ namespace DiveDeep.Controllers
             return RedirectToAction("Kurv");
         }
 
+        public IActionResult DeleteOrder(int id)
+        {
+            _order.DeleteOrder(id);
+            return RedirectToAction("MineOrdrer");
+        }
+
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -45,34 +51,31 @@ namespace DiveDeep.Controllers
             var product = _products.GetByID(pdvm.Product.Id);
             if (product is null) return NotFound();
 
-            //if (product.ProductType != ProductType.BCD)
-            //{
-            //    ModelState.Remove("Product.BCD.Size");
-            //}
-
-            //if (product.ProductType != ProductType.Fins)
-            //{
-            //    ModelState.Remove("Product.Fins.Size");
-            //}
-
-            //if (product.ProductType != ProductType.DivingSuit)
-            //{
-            //    ModelState.Remove("Product.DivingSuit.Size");
-            //    ModelState.Remove("Product.DivingSuit.Gender");
-            //}
+            if (product.ProductType != ProductType.DivingSuit)
+            {
+                ModelState.Remove(nameof(pdvm.Gender));
+            }
+            if (product.ProductType is not (ProductType.BCD or ProductType.Fins or ProductType.DivingSuit))
+            {
+                ModelState.Remove(nameof(pdvm.Size));
+            }
 
             pdvm.Product = product;
 
             var orderId = _order.GetOrCreateCurrentOrderId(_user.GetUserId(User));
-            var result = _order.AddItemToOrder(pdvm, orderId);
 
-            if (!result.IsSuccessful)
+            if (ModelState.IsValid)
             {
-                var key = string.IsNullOrEmpty(result.Key) ? string.Empty : result.Key;
-                ModelState.AddModelError(key, result.ErrorMessage ?? "Unknown error");
-                pdvm.Product = product;
-                // Gå til oversigten
-                return View("~/Views/Products/ProductInfo.cshtml", pdvm);
+                var result = _order.AddItemToOrder(pdvm, orderId);
+
+                if (!result.IsSuccessful)
+                {
+                    var key = string.IsNullOrEmpty(result.Key) ? string.Empty : result.Key;
+                    ModelState.AddModelError(key, result.ErrorMessage ?? "Unknown error");
+                    pdvm.Product = product;
+                    // Gå til oversigten
+                    return View("~/Views/Products/ProductInfo.cshtml", pdvm);
+                }
             }
 
             return View("~/Views/Products/ProductInfo.cshtml", pdvm);

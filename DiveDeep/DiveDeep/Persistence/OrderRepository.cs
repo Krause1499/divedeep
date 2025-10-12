@@ -140,5 +140,12 @@ namespace DiveDeep.Persistence
             io.Size == size &&
             io.Gender == gender);
         }
+
+        public void DeleteOrder(int orderId)
+        {
+            _context.Orders
+                .Remove(GetOrder(orderId));
+            _context.SaveChanges();
+        }
     }
 }

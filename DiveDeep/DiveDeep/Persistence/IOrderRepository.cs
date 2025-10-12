@@ -13,5 +13,6 @@ namespace DiveDeep.Persistence
         List<Order> GetAllOrders();
         Order GetOrder(int orderId);
         InventoryUnit GetInventoryUnit(ProductDetailsViewModel pdvm);
+        void DeleteOrder(int orderId);
     }
 }

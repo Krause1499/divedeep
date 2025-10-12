@@ -2,10 +2,11 @@
 {
     public enum Size
     {
-        XS,
-        S,
-        M,
-        L,
-        XL
+        NA = -1,
+        XS = 0,
+        S = 1,
+        M = 2,
+        L = 3,
+        XL = 4
     }
 }

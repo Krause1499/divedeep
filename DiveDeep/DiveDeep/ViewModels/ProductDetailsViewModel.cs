@@ -6,11 +6,11 @@ namespace DiveDeep.ViewModels
     public class ProductDetailsViewModel
     {
         public Product Product { get; set; }
-        [Required(ErrorMessage = "Vælg en startdato")]
+        //[Required(ErrorMessage = "Vælg en startdato")]
         public DateOnly? StartDate { get; set; }
-        [Required(ErrorMessage = "Vælg en slutdato")]
+        //[Required(ErrorMessage = "Vælg en slutdato")]
         public DateOnly? EndDate { get; set; }
-        public Size Size { get; set; }
-        public Gender Gender { get; set; }
+        public Size? Size { get; set; }
+        public Gender? Gender { get; set; }
     }
 }

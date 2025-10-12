@@ -85,7 +85,7 @@
             <!-- Cart Summary -->
             <div class="card" style="background-color: #f8f9fa;border-radius: 10px;">
                 <div class="card-body">
-                    <h5 class="card-title mb-4">Odre Oversigt</h5>
+                    <h5 class="card-title mb-4">Ordre Oversigt</h5>
                     <div class="d-flex justify-content-between mb-3">
                         <span>Subtotal</span>
                         <strong>
@@ -113,11 +113,16 @@
                         <strong>Total</strong>
                         <strong>
                             @($"{totalPrice} DKK")
+                            @{
+                                int totalPriceInt = Convert.ToInt16(totalPrice);
+                                Model.TotalPrice += totalPriceInt;
+                            }
                         </strong>
                     </div>
                     <form asp-controller="Order" asp-action="Oversigt" method="post">
                         <input type="hidden" asp-for="OrderId" />
                         <input type="hidden" asp-for="UserId" />
+                        <input type="hidden" asp-for="TotalPrice" />
                         <button class="btn btn-primary w-100">Betal nu</button>
                     </form>
                 </div>

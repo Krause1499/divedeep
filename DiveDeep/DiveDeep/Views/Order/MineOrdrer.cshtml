@@ -30,8 +30,8 @@ else
             {
                 <tr>
                     <td>@order.OrderId</td>
-                    <td>@order.TotalPrice</td>
-                    <td>@order.User</td> @*Skal vise hvilken User*@
+                    <td>@order.TotalPrice DKK</td>
+                    <td>@order.User</td>
                     @if (User.IsInRole("Admin"))
                     {
                         <td>

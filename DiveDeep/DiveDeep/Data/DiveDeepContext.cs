@@ -9,6 +9,7 @@ namespace DiveDeep.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<InventoryUnit> InventoryUnits { get; set; }
 
         public DiveDeepContext(DbContextOptions<DiveDeepContext> dbContextOptions) : base(dbContextOptions)
         {
@@ -205,6 +206,19 @@ namespace DiveDeep.Data
                 .HasMany(u => u.Orders)
                 .WithOne(o => o.User)
                 .HasForeignKey(o => o.UserId);
+
+            modelBuilder.Entity<InventoryUnit>()
+                 .HasIndex(x => new { x.ProductId, x.Size, x.Gender })
+                 .IsUnique();
+
+            // DB-defaults (bruges kun hvis kolonnen udelades i INSERT)
+            modelBuilder.Entity<InventoryUnit>()
+                 .Property(x => x.Size)
+                 .HasDefaultValue(Size.NA);
+
+            modelBuilder.Entity<InventoryUnit>()
+                 .Property(x => x.Gender)
+                 .HasDefaultValue(Gender.NA);
         }
     }
 }

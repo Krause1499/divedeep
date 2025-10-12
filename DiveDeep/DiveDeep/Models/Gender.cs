@@ -2,7 +2,8 @@
 {
     public enum Gender
     {
-        Herre,
-        Dame
+        NA = -1,
+        Herre = 0,
+        Dame = 1
     }
 }

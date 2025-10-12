@@ -3,6 +3,7 @@ using DiveDeep.Models;
 using DiveDeep.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using DiveDeep.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddDefaultIdentity<ApplicationUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<DiveDeepContext>();
+
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddRazorPages();
 

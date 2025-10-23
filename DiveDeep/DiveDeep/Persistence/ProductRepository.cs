@@ -32,5 +32,43 @@ namespace DiveDeep.Persistence
             return _context.Products
                 .FirstOrDefault(x => x.Id == id);
         }
+
+        public void Update(Product product)
+        {
+            var entityToUpdate = _context.Products.FirstOrDefault(p => p.Id == product.Id);
+            if (entityToUpdate == null)
+                return;
+
+            entityToUpdate.Brand = product.Brand;
+            entityToUpdate.Description = product.Description;
+            entityToUpdate.DailyPrice = product.DailyPrice;
+
+            if (entityToUpdate.ProductType == ProductType.BCD)
+            entityToUpdate.BCD.Model = product.BCD.Model;
+
+            if (entityToUpdate.ProductType == ProductType.DivingSuit)
+            {
+                entityToUpdate.DivingSuit.Model = product.DivingSuit.Model;
+                entityToUpdate.DivingSuit.ThicknessInMm = product.DivingSuit.ThicknessInMm;
+            }
+
+            if (entityToUpdate.ProductType == ProductType.Fins)
+            entityToUpdate.Fins.Model = product.Fins.Model;
+
+            if (entityToUpdate.ProductType == ProductType.Snorkel)
+            entityToUpdate.MaskSnorkel.Model = product.MaskSnorkel.Model;
+
+            if (entityToUpdate.ProductType == ProductType.OxygenTank)
+            entityToUpdate.OxygenTank.VolumeInL = product.OxygenTank.VolumeInL;
+
+            if (entityToUpdate.ProductType == ProductType.Regulator)
+            {
+                entityToUpdate.Regulator.StageOne = product.Regulator.StageOne;
+                entityToUpdate.Regulator.StageTwo = product.Regulator.StageTwo;
+                entityToUpdate.Regulator.Octopus = product.Regulator.Octopus;
+            }
+
+            _context.SaveChanges();
+        }
     }
 }

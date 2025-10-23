@@ -18,6 +18,10 @@
                     </h6>
                     <p class="card-text mb-0">@item.DailyPrice kr. pr. dag</p>
                     <a asp-area="" asp-controller="Products" asp-action="ProductInfo" asp-route-id="@item.Id" class="stretched-link"></a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-area="" asp-controller="Products" asp-action="Edit" asp-route-id="@item.Id" class="stretched-link">Rediger</a>
+                    }
                 </div>
             </div>
         </div>

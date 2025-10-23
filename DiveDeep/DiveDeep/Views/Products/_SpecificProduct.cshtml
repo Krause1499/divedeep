@@ -1,0 +1,73 @@
+﻿@model Product
+
+@if (Model.ProductType == ProductType.BCD)
+{
+    <div class="mb-3">
+        <label asp-for="BCD.Model" class="form-label">Model</label>
+        <input asp-for="BCD.Model" class="form-control" />
+        <span asp-validation-for="BCD.Model" class="text-danger"></span>
+    </div>
+}
+
+@if (Model.ProductType == ProductType.DivingSuit)
+{
+    <div class="mb-3">
+        <label asp-for="DivingSuit.Model" class="form-label">Model</label>
+        <input asp-for="DivingSuit.Model" class="form-control" />
+        <span asp-validation-for="DivingSuit.Model" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DivingSuit.ThicknessInMm" class="form-label">Tykkelse i mm</label>
+        <input asp-for="DivingSuit.ThicknessInMm" class="form-control" />
+        <span asp-validation-for="DivingSuit.ThicknessInMm" class="text-danger"></span>
+    </div>
+}
+
+@if (Model.ProductType == ProductType.Fins)
+{
+    <div class="mb-3">
+        <label asp-for="Fins.Model" class="form-label">Model</label>
+        <input asp-for="Fins.Model" class="form-control" />
+        <span asp-validation-for="Fins.Model" class="text-danger"></span>
+    </div>
+}
+
+@if (Model.ProductType == ProductType.Snorkel)
+{
+    <div class="mb-3">
+        <label asp-for="MaskSnorkel.Model" class="form-label">Model</label>
+        <input asp-for="MaskSnorkel.Model" class="form-control" />
+        <span asp-validation-for="MaskSnorkel.Model" class="text-danger"></span>
+    </div>
+}
+
+@if (Model.ProductType == ProductType.OxygenTank)
+{
+    <div class="mb-3">
+        <label asp-for="OxygenTank.VolumeInL" class="form-label">Volume i liter</label>
+        <input asp-for="OxygenTank.VolumeInL" class="form-control" />
+        <span asp-validation-for="OxygenTank.VolumeInL" class="text-danger"></span>
+    </div>
+}
+
+@if (Model.ProductType == ProductType.Regulator)
+{
+    <div class="mb-3">
+        <label asp-for="Regulator.StageOne" class="form-label">1. trin</label>
+        <input asp-for="Regulator.StageOne" class="form-control" />
+        <span asp-validation-for="Regulator.StageOne" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Regulator.StageTwo" class="form-label">2. trin</label>
+        <input asp-for="Regulator.StageTwo" class="form-control" />
+        <span asp-validation-for="Regulator.StageTwo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Regulator.Octopus" class="form-label">Octupus</label>
+        <input asp-for="Regulator.Octopus" class="form-control" />
+        <span asp-validation-for="Regulator.Octopus" class="text-danger"></span>
+    </div>
+}

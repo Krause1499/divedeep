@@ -9,5 +9,7 @@ namespace DiveDeep.Persistence
         List<Product> GetAllProductsByType(ProductType product);
 
         Product? GetByID(int id);
+
+        void Update(Product product);
     }
 }

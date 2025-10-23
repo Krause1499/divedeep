@@ -1,4 +1,5 @@
-﻿using DiveDeep.Persistence;
+﻿using DiveDeep.Models;
+using DiveDeep.Persistence;
 using DiveDeep.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,32 @@ namespace DiveDeep.Controllers
                 Product = product
             };
             return View(pdvm);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var product = _products.GetByID(id);
+
+            if (product == null)
+            return NotFound();
+
+            ViewBag.Action = "edit";
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Action = "edit";
+                return View(product);
+            }
+
+            _products.Update(product);
+
+            return RedirectToAction("ProductInfo", product);
         }
     }
 }

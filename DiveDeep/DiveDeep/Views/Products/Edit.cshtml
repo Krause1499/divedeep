@@ -1,0 +1,56 @@
+﻿@model Product
+@{
+    string action = ViewBag.Action ?? string.Empty;
+}
+
+<div class="container my-5">
+    <form method="post" asp-controller="Products" asp-action="@action" class="mt-4">
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        @if (action == "edit")
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+
+        <div class="row g-5 align-items-start">
+            <!-- Venstre kolonne: billede -->
+            <div class="col-lg-5 col-md-6 text-center">
+                <div class="border rounded shadow-sm p-2 bg-white">
+                    <img src="@Model.FilePath"
+                         alt="Produktbillede"
+                         class="img-fluid rounded"
+                         id="mainImage" />
+                </div>
+            </div>
+
+            <!-- Højre kolonne: formularfelter -->
+            <div class="col-lg-7 col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Brand" class="form-label fw-semibold">Mærke</label>
+                    <input asp-for="Brand" class="form-control" />
+                    <span asp-validation-for="Brand" class="text-danger"></span>
+                </div>
+
+                <partial name="_SpecificProduct" model="@Model" />
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-semibold">Beskrivelse</label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DailyPrice" class="form-label fw-semibold">Lejepris pr. dag i kroner</label>
+                    <input asp-for="DailyPrice" class="form-control" />
+                    <span asp-validation-for="DailyPrice" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary px-4">Gem</button>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary px-4">Annuller</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

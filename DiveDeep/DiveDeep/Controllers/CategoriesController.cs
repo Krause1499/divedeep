@@ -48,10 +48,5 @@ namespace DiveDeep.Controllers
             var categories = _products.GetAllProductsByType(Models.ProductType.DivingSet);
             return View(categories);
         }
-
-        public IActionResult Kurv()
-        {
-            return View();
-        }
     }
 }

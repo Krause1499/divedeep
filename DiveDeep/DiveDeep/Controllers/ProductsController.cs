@@ -50,5 +50,11 @@ namespace DiveDeep.Controllers
 
             return RedirectToAction("ProductInfo", product);
         }
+
+        public IActionResult Delete(int id)
+        {
+            _products.Delete(id);
+            return View("~/Views/Home/Index.cshtml");
+        }
     }
 }

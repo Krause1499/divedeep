@@ -74,6 +74,38 @@ namespace DiveDeep.Persistence
                 Gender = pdvm.Gender
             };
 
+            if (pdvm.Product.ProductType == ProductType.BCD)
+            {
+                item.Model = pdvm.Product.BCD.Model;
+            }
+
+            if (pdvm.Product.ProductType == ProductType.DivingSuit)
+            {
+                item.Model = pdvm.Product.DivingSuit.Model;
+            }
+
+            if (pdvm.Product.ProductType == ProductType.Fins)
+            {
+                item.Model = pdvm.Product.Fins.Model;
+            }
+
+            if (pdvm.Product.ProductType == ProductType.Snorkel)
+            {
+                item.Model = pdvm.Product.MaskSnorkel.Model;
+            }
+
+            if (pdvm.Product.ProductType == ProductType.OxygenTank)
+            {
+                item.Volume = pdvm.Product.OxygenTank.VolumeInL;
+            }
+
+            if (pdvm.Product.ProductType == ProductType.Regulator)
+            {
+                item.StageOne = pdvm.Product.Regulator.StageOne;
+                item.StageTwo = pdvm.Product.Regulator.StageTwo;
+                item.Octopus = pdvm.Product.Regulator.Octopus;
+            }
+
             _context.OrderItems.Add(item);
             _context.SaveChanges();
         }

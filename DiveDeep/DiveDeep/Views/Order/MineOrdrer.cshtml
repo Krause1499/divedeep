@@ -1,9 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model List<Order>
+﻿@model List<Order>
 
 @if (User.IsInRole("Admin"))
 {
@@ -35,8 +30,8 @@ else
                     @if (User.IsInRole("Admin"))
                     {
                         <td>
-                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.OrderId" class="btn btn-link">Rediger</a>
-                            <a asp-controller="Order" asp-action="DeleteOrder" asp-route-id="@order.OrderId" class="btn btn-link" onclick="return confirmDelete()">Slet</a>
+                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.OrderId" class="btn btn-primary me-2">Rediger</a>
+                            <a asp-controller="Order" asp-action="DeleteOrder" asp-route-id="@order.OrderId" class="btn btn-danger" onclick="return confirmDelete()">Slet</a>
                         </td>
                     }
                 </tr>

@@ -129,3 +129,45 @@ body {
     }
 }
 
+/* kolonnen og kortet fylder samme højde */
+.card-col {
+    display: flex;
+}
+
+.card-eq {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+    /* billede får fast højde og beskæres pænt */
+    .card-eq .card-img-top {
+        height: 220px; /* justér efter behov */
+        object-fit: contain; /* hele billedet synligt */
+        background: #f8f9fa; /* subtil baggrund */
+    }
+
+    /* gør body til flex-col, så vi kan skubbe ting til bund */
+    .card-eq .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* reserver plads til specs (størrelse/køn) så kortene ikke hopper */
+    .card-eq .specs {
+        min-height: 90px;
+    }
+    /* ~2-3 linjer; justér efter behov */
+
+    /* skub dato-sektion ned mod bunden */
+    .card-eq .dates {
+        margin-top: auto;
+    }
+
+    /* pænere footer uden hård kant */
+    .card-eq .card-footer {
+        background: transparent;
+        border-top: 0;
+        padding-top: 0;
+    }
+

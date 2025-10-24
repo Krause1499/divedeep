@@ -33,6 +33,12 @@ namespace DiveDeep.Persistence
                 .FirstOrDefault(x => x.Id == id);
         }
 
+        public void Delete(int id)
+        {
+            _context.Products.Remove(GetByID(id));
+            _context.SaveChanges();
+        }
+
         public void Update(Product product)
         {
             var entityToUpdate = _context.Products.FirstOrDefault(p => p.Id == product.Id);

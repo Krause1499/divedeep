@@ -11,5 +11,7 @@ namespace DiveDeep.Persistence
         Product? GetByID(int id);
 
         void Update(Product product);
+
+        void Delete(int id);
     }
 }
